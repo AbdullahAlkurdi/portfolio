@@ -6,10 +6,11 @@ import { Section } from "@/components/layout/section";
 import { Heading } from "@/components/ui/typography/heading";
 import { Body } from "@/components/ui/typography/body";
 import { Badge } from "@/components/ui/badge";
-import { timelineData } from "@/content/data/timeline";
+import { timelineData, timelineSection } from "@/content/data/timeline";
 import {
   staggerContainer,
   staggerItem,
+  fadeInUpView,
 } from "@/lib/animations/variants";
 
 function TimelineDesktop() {
@@ -117,20 +118,19 @@ export function Timeline() {
       <Container>
         <motion.div
           className="mx-auto mb-16 max-w-2xl text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={fadeInUpView}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
         >
           <Badge variant="primary" className="mb-4">
-            Engineering Evolution
+            {timelineSection.badge}
           </Badge>
           <Heading level="2" className="mb-4">
-            The Journey So Far
+            {timelineSection.title}
           </Heading>
           <Body className="text-muted-foreground">
-            Every engineer evolves. Here is a snapshot of the milestones that
-            shaped my approach to building software.
+            {timelineSection.description}
           </Body>
         </motion.div>
         <TimelineDesktop />

@@ -39,8 +39,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-background focus:px-4 focus:py-2 focus:text-foreground focus:ring-2 focus:ring-ring"
+          >
+            Skip to content
+          </a>
           <DesktopNav />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" className="flex-1">{children}</main>
           <MobileNav />
         </ThemeProvider>
       </body>

@@ -77,6 +77,24 @@ export const timelineLine: Variants = {
   },
 };
 
+export const fadeInUpDelayed: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: 0.8 },
+  },
+};
+
+export const fadeInUpView: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 },
+  },
+};
+
 export const scrollIndicator: Variants = {
   initial: { opacity: 0.6 },
   animate: {

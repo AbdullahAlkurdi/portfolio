@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import type { NavItem } from "@/types/content";
-import { navigationData } from "@/content/data/navigation";
+import { navigationData, navigationBrand } from "@/content/data/navigation";
 import { useEffect, useState } from "react";
 
 function useActiveSection(sectionIds: string[]): string {
@@ -42,7 +42,7 @@ export function DesktopNav() {
         className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8"
         aria-label="Main navigation"
       >
-        <span className="text-lg font-semibold tracking-tight">AK</span>
+        <span className="text-lg font-semibold tracking-tight">{navigationBrand}</span>
         <div className="flex items-center gap-1">
           {navigationData.map((item: NavItem) => (
             <a

@@ -1,4 +1,11 @@
-import type { TimelineEvent } from "@/types/content";
+import type { SectionHeader, TimelineEvent } from "@/types/content";
+
+export const timelineSection: SectionHeader = {
+  badge: "Engineering Evolution",
+  title: "The Journey So Far",
+  description:
+    "Every engineer evolves. Here is a snapshot of the milestones that shaped my approach to building software.",
+};
 
 export const timelineData: TimelineEvent[] = [
   {

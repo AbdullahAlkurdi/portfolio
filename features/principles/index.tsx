@@ -6,10 +6,11 @@ import { Section } from "@/components/layout/section";
 import { Heading } from "@/components/ui/typography/heading";
 import { Body } from "@/components/ui/typography/body";
 import { Badge } from "@/components/ui/badge";
-import { principlesData } from "@/content/data/principles";
+import { principlesData, principlesSection } from "@/content/data/principles";
 import {
   staggerContainer,
   staggerItem,
+  fadeInUpView,
 } from "@/lib/animations/variants";
 
 const iconMap: Record<string, string> = {
@@ -27,20 +28,19 @@ export function Principles() {
       <Container>
         <motion.div
           className="mx-auto mb-16 max-w-2xl text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={fadeInUpView}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
         >
           <Badge variant="primary" className="mb-4">
-            Engineering Mindset
+            {principlesSection.badge}
           </Badge>
           <Heading level="2" className="mb-4">
-            Principles That Guide Every Decision
+            {principlesSection.title}
           </Heading>
           <Body className="text-muted-foreground">
-            These engineering principles form the foundation of every system I
-            design and every line of code I write.
+            {principlesSection.description}
           </Body>
         </motion.div>
         <motion.div

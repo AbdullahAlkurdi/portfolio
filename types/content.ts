@@ -3,10 +3,9 @@ export type NavItem = {
   href: string;
 };
 
-export type NavLink = {
-  label: string;
-  href: string;
-  isExternal?: boolean;
+export type NavigationContent = {
+  brand: string;
+  items: NavItem[];
 };
 
 export type SocialLink = {
@@ -28,6 +27,12 @@ export type HeroContent = {
   };
 };
 
+export type SectionHeader = {
+  badge: string;
+  title: string;
+  description: string;
+};
+
 export type Principle = {
   title: string;
   description: string;
@@ -42,6 +47,7 @@ export type TimelineEvent = {
 
 export type FooterContent = {
   email: string;
+  copyright: string;
   resumeCta: {
     label: string;
     href: string;
@@ -49,10 +55,4 @@ export type FooterContent = {
   social: SocialLink[];
 };
 
-export type SiteContent = {
-  navigation: NavItem[];
-  hero: HeroContent;
-  principles: Principle[];
-  timeline: TimelineEvent[];
-  footer: FooterContent;
-};
+

@@ -1,4 +1,11 @@
-import type { Principle } from "@/types/content";
+import type { SectionHeader, Principle } from "@/types/content";
+
+export const principlesSection: SectionHeader = {
+  badge: "Engineering Mindset",
+  title: "Principles That Guide Every Decision",
+  description:
+    "These engineering principles form the foundation of every system I design and every line of code I write.",
+};
 
 export const principlesData: Principle[] = [
   {

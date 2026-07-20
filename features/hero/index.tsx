@@ -9,7 +9,7 @@ import { heroData } from "@/content/data/hero";
 import { HeroSvg } from "./hero-svg";
 import { ScrollIndicator } from "./scroll-indicator";
 import {
-  fadeInUp,
+  fadeInUpDelayed,
   fadeInLeft,
   slideInRight,
   staggerContainer,
@@ -66,10 +66,9 @@ export function Hero() {
           </motion.div>
         </motion.div>
         <motion.div
-          variants={fadeInUp}
+          variants={fadeInUpDelayed}
           initial="hidden"
           animate="visible"
-          transition={{ delay: 0.8 }}
         >
           <ScrollIndicator />
         </motion.div>

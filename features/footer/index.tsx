@@ -42,7 +42,7 @@ export function Footer() {
         </div>
         <div className="mt-6 text-center sm:text-left">
           <Body size="sm" className="text-muted-foreground">
-            &copy; {new Date().getFullYear()} Abdullah Alkurdi. Built with Next.js.
+            &copy; {new Date().getFullYear()} {footerData.copyright}
           </Body>
         </div>
       </Container>
