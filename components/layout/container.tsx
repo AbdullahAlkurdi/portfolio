@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import type { HTMLAttributes } from "react";
 
 type ContainerProps = HTMLAttributes<HTMLDivElement> & {
-  as?: "div" | "section" | "article" | "main" | "header" | "footer";
+  as?: "div" | "section" | "article" | "main" | "header" | "footer" | "nav";
 };
 
 export function Container({

@@ -1,3 +1,15 @@
+import { Hero } from "@/features/hero";
+import { Principles } from "@/features/principles";
+import { Timeline } from "@/features/timeline";
+import { Footer } from "@/features/footer";
+
 export default function HomePage() {
-  return null;
+  return (
+    <>
+      <Hero />
+      <Principles />
+      <Timeline />
+      <Footer />
+    </>
+  );
 }

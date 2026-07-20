@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { DesktopNav } from "@/features/navigation/desktop-nav";
+import { MobileNav } from "@/features/navigation/mobile-nav";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,8 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Engineering Portfolio",
+  title: "Abdullah Alkurdi — Engineering Portfolio",
+  description:
+    "Full-stack engineer passionate about clean architecture, scalable systems, and impactful software.",
 };
 
 export default function RootLayout({
@@ -36,7 +39,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <DesktopNav />
+          <main className="flex-1">{children}</main>
+          <MobileNav />
         </ThemeProvider>
       </body>
     </html>

@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import type { HTMLAttributes } from "react";
 
 type SectionProps = HTMLAttributes<HTMLElement> & {
-  as?: "section" | "div" | "article";
+  as?: "section" | "div" | "article" | "footer";
   spacing?: "sm" | "md" | "lg" | "xl";
 };
 

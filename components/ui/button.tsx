@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
-import type { ButtonHTMLAttributes } from "react";
+import type { ButtonHTMLAttributes, AnchorHTMLAttributes } from "react";
 
 type ButtonVariant =
   | "primary"
@@ -14,11 +14,15 @@ type ButtonVariant =
 
 type ButtonSize = "sm" | "md" | "lg";
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
-  as?: never;
-};
+  className?: string;
+  children?: React.ReactNode;
+} & (
+  | ({ as?: "button" } & ButtonHTMLAttributes<HTMLButtonElement>)
+  | ({ as: "a" } & AnchorHTMLAttributes<HTMLAnchorElement>)
+);
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
@@ -41,29 +45,38 @@ const sizeStyles: Record<ButtonSize, string> = {
   lg: "h-12 px-6 text-base",
 };
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
+const baseClasses =
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
+
+export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
+  (props, ref) => {
+    const {
       variant = "primary",
       size = "md",
       className,
       children,
-      disabled,
-      ...props
-    },
-    ref,
-  ) => {
+      as,
+      ...rest
+    } = props;
+
+    const classes = cn(baseClasses, variantStyles[variant], sizeStyles[size], className);
+
+    if (as === "a") {
+      const { ...anchorProps } = rest as AnchorHTMLAttributes<HTMLAnchorElement>;
+      return (
+        <a ref={ref as React.Ref<HTMLAnchorElement>} className={classes} {...anchorProps}>
+          {children}
+        </a>
+      );
+    }
+
+    const { disabled, ...buttonProps } = rest as ButtonHTMLAttributes<HTMLButtonElement>;
     return (
       <button
-        ref={ref}
+        ref={ref as React.Ref<HTMLButtonElement>}
         disabled={disabled}
-        className={cn(
-          "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-          variantStyles[variant],
-          sizeStyles[size],
-          className,
-        )}
-        {...props}
+        className={classes}
+        {...buttonProps}
       >
         {children}
       </button>
