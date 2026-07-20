@@ -95,6 +95,12 @@ export const fadeInUpView: Variants = {
   },
 };
 
+export const crossfade: Variants = {
+  enter: { opacity: 0 },
+  center: { opacity: 1 },
+  exit: { opacity: 0 },
+};
+
 export const scrollIndicator: Variants = {
   initial: { opacity: 0.6 },
   animate: {

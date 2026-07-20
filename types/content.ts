@@ -55,4 +55,47 @@ export type FooterContent = {
   social: SocialLink[];
 };
 
+export type RizenSection = {
+  id: string;
+  label: string;
+  content: string;
+};
+
+export type RizenArchitectureLayer = {
+  name: string;
+  description: string;
+  children?: string[];
+};
+
+export type RizenAiStep = {
+  label: string;
+  description: string;
+};
+
+export type RizenMetric = {
+  label: string;
+  value: string;
+  description: string;
+};
+
+export type RizenEcosystemNode = {
+  name: string;
+  description: string;
+};
+
+export type RizenContent = {
+  hero: {
+    badge: string;
+    title: string;
+    description: string;
+  };
+  sections: RizenSection[];
+  architecture: RizenArchitectureLayer[];
+  aiLifecycle: RizenAiStep[];
+  ecosystem: RizenEcosystemNode[];
+  metrics: RizenMetric[];
+  results: string[];
+  roadmap: string[];
+};
+
 
