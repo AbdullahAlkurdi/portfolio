@@ -22,6 +22,17 @@ Travel planning is notoriously fragmented. Users juggle between flight aggregato
 4. **Offline navigation** — Full trip access without internet connectivity
 5. **Social planning** — Collaborative trip building with friends and family
 
+## Constraints
+
+TripMate was built under four key constraints:
+
+- **Offline navigation**: Users travel internationally without reliable data. The itinerary and map data must be fully accessible offline.
+- **Real-time adaptability**: Weather, flight delays, and restaurant closures require dynamic re-planning within seconds.
+- **Multi-platform**: Consistent experience on mobile and web with shared business logic.
+- **Data freshness**: Points of interest data must be current — stale recommendations degrade trust.
+
+These constraints drove the client-first architecture decision.
+
 ## Architecture
 
 TripMate follows the same Clean Architecture foundation as Rizen, with domain-specific adaptations for the travel domain.

@@ -4,15 +4,23 @@ import { Heading } from "@/components/ui/typography/heading";
 import { Body } from "@/components/ui/typography/body";
 import { ProjectGrid } from "@/features/projects/project-grid";
 import { getAllProjects } from "@/lib/content/projects";
+import { projectsUi } from "@/content/data/projects-ui";
+import { siteConfig } from "@/content/data/site";
 
 export const metadata: Metadata = {
-  title: "Projects — Abdullah Alkurdi",
-  description:
-    "Engineering case studies spanning mobile apps, AI systems, and full-stack architectures.",
+  title: `${projectsUi.listing.title} — ${siteConfig.name}`,
+  description: projectsUi.listing.description,
   openGraph: {
-    title: "Projects — Abdullah Alkurdi",
-    description:
-      "Engineering case studies spanning mobile apps, AI systems, and full-stack architectures.",
+    title: `${projectsUi.listing.title} — ${siteConfig.name}`,
+    description: projectsUi.listing.description,
+    url: `${siteConfig.url}/projects`,
+    images: [{ url: `${siteConfig.url}${siteConfig.ogImage}` }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${projectsUi.listing.title} — ${siteConfig.name}`,
+    description: projectsUi.listing.description,
+    images: [`${siteConfig.url}${siteConfig.ogImage}`],
   },
 };
 
@@ -23,12 +31,10 @@ export default function ProjectsPage() {
     <Container as="div" className="py-20 md:py-28">
       <div className="mb-12">
         <Heading level="1" as="h1" className="mb-4">
-          Projects
+          {projectsUi.listing.title}
         </Heading>
         <Body size="lg" className="max-w-2xl text-muted-foreground">
-          Engineering case studies spanning mobile apps, AI systems, and full-stack
-          architectures. Each project includes context, architecture decisions, and
-          lessons learned.
+          {projectsUi.listing.description}
         </Body>
       </div>
 

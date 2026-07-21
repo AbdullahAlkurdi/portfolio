@@ -26,6 +26,18 @@ Existing solutions share three critical failures:
 4. **Enterprise-grade** — Clean Architecture, 90%+ test coverage, CI/CD
 5. **Scalable** — Support 10k+ concurrent users from launch
 
+## Constraints
+
+The architecture had to satisfy five non-negotiable constraints:
+
+- **Offline-first**: Full functionality must work without internet connectivity. Local data is the source of truth; cloud is sync.
+- **Sub-200ms AI latency**: AI coaching responses must complete within 200ms for the 95th percentile to feel instant.
+- **10k+ concurrent users**: The backend must scale from day one without re-architecture.
+- **Cross-platform consistency**: Identical experience on iOS and Android with minimum 95% code sharing.
+- **Enterprise-grade privacy**: User habit data is sensitive — all personal data encrypted at rest and in transit.
+
+Every architectural decision was evaluated against these five constraints.
+
 ## Architecture
 
 The system follows Clean Architecture with three distinct layers, each with strict dependency rules. The domain layer contains zero framework dependencies — pure Dart business logic that can be tested without Flutter.

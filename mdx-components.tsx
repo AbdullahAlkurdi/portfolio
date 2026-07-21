@@ -105,6 +105,42 @@ const components: MDXComponents = {
       )}
     </figure>
   ),
+  table: ({ children, ...props }) => (
+    <div className="mb-4 overflow-x-auto last:mb-0">
+      <table
+        className="w-full border-collapse text-sm"
+        {...props}
+      >
+        {children}
+      </table>
+    </div>
+  ),
+  thead: ({ children, ...props }) => (
+    <thead className="border-b border-border bg-muted/50" {...props}>
+      {children}
+    </thead>
+  ),
+  tbody: ({ children, ...props }) => (
+    <tbody {...props}>{children}</tbody>
+  ),
+  tr: ({ children, ...props }) => (
+    <tr className="border-b border-border last:border-0" {...props}>
+      {children}
+    </tr>
+  ),
+  th: ({ children, ...props }) => (
+    <th
+      className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+      {...props}
+    >
+      {children}
+    </th>
+  ),
+  td: ({ children, ...props }) => (
+    <td className="px-4 py-3 text-sm" {...props}>
+      {children}
+    </td>
+  ),
   Callout,
   CodeBlock,
 };

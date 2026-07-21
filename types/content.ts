@@ -3,10 +3,7 @@ export type NavItem = {
   href: string;
 };
 
-export type NavigationContent = {
-  brand: string;
-  items: NavItem[];
-};
+
 
 export type SocialLink = {
   label: string;
@@ -55,6 +52,14 @@ export type FooterContent = {
   social: SocialLink[];
 };
 
+export type SiteConfig = {
+  url: string;
+  name: string;
+  title: string;
+  description: string;
+  ogImage: string;
+};
+
 export type ProjectFrontmatter = {
   title: string;
   description: string;
@@ -69,15 +74,38 @@ export type ProjectFrontmatter = {
   image?: string;
 };
 
-export type ProjectLink = {
-  label: string;
-  href: string;
-  icon: "github" | "external" | "arrow-right";
-};
-
-export type ProjectSection = {
-  title: string;
-  items: string[];
+export type ProjectsUiStrings = {
+  listing: {
+    title: string;
+    description: string;
+  };
+  filter: {
+    all: string;
+    label: string;
+    empty: string;
+    noMatch: string;
+  };
+  card: {
+    featured: string;
+    readCaseStudy: string;
+    code: string;
+    live: string;
+  };
+  detail: {
+    github: string;
+    liveDemo: string;
+    previous: string;
+    next: string;
+    backToAll: string;
+    backChevron: string;
+    notFoundTitle: string;
+    notFoundDescription: string;
+  };
+  notFound: {
+    title: string;
+    description: string;
+    backLink: string;
+  };
 };
 
 export type RizenSection = {

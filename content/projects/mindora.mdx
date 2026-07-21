@@ -22,6 +22,17 @@ Journaling is one of the most effective tools for mental wellness, yet most peop
 4. **Habit formation** — Gentle, personalized reminders and gamification
 5. **Exportable data** — User-owned data with open export formats
 
+## Constraints
+
+Mindora's design was governed by strict constraints:
+
+- **Zero-knowledge privacy**: The server must never have access to unencrypted journal content. AI processing must happen on anonymized data.
+- **On-device AI**: Sensitive analysis must run locally. Cloud AI can only process non-sensitive data with explicit user consent.
+- **Emotional safety**: AI responses must be carefully calibrated to avoid harm. No directive advice, no clinical diagnoses.
+- **Battery efficiency**: Journaling happens throughout the day; continuous AI processing must not drain battery. On-device models must be under 50MB.
+
+Privacy was the primary constraint — all other decisions followed from it.
+
 ## Architecture
 
 Mindora shares architectural DNA with Rizen and TripMate, with key adaptations for privacy-first design.

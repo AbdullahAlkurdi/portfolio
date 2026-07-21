@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { projectsUi } from "@/content/data/projects-ui";
 import type { ProjectFrontmatter } from "@/types/content";
 
 type ProjectNavigationProps = {
@@ -21,7 +22,7 @@ export function ProjectNavigation({ prev, next }: ProjectNavigationProps) {
             <line x1="19" y1="12" x2="5" y2="12" />
             <polyline points="12 19 5 12 12 5" />
           </svg>
-          All projects
+          {projectsUi.detail.backToAll}
         </Link>
 
         {prev && (
@@ -29,7 +30,7 @@ export function ProjectNavigation({ prev, next }: ProjectNavigationProps) {
             href={`/projects/${prev.slug}`}
             className="group ml-auto flex flex-col items-end text-right"
           >
-            <span className="text-xs text-muted-foreground">Previous</span>
+            <span className="text-xs text-muted-foreground">{projectsUi.detail.previous}</span>
             <span className="text-sm font-medium transition-colors group-hover:text-primary">
               {prev.title}
             </span>
@@ -41,7 +42,7 @@ export function ProjectNavigation({ prev, next }: ProjectNavigationProps) {
             href={`/projects/${next.slug}`}
             className="group flex flex-col items-start text-left"
           >
-            <span className="text-xs text-muted-foreground">Next</span>
+            <span className="text-xs text-muted-foreground">{projectsUi.detail.next}</span>
             <span className="text-sm font-medium transition-colors group-hover:text-primary">
               {next.title}
             </span>
@@ -54,7 +55,7 @@ export function ProjectNavigation({ prev, next }: ProjectNavigationProps) {
           href="/projects"
           className="text-sm text-muted-foreground underline underline-offset-2 hover:text-foreground transition-colors"
         >
-          ← Back to projects
+          {projectsUi.detail.backChevron}
         </Link>
       </div>
     </nav>
