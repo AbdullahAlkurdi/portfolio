@@ -151,4 +151,76 @@ export type RizenContent = {
   roadmap: string[];
 };
 
+export type ResumeContact = {
+  label: string;
+  href: string;
+};
+
+export type ResumeSkillCategory = {
+  category: string;
+  skills: string[];
+};
+
+export type ResumeExperience = {
+  role: string;
+  organization: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+  achievements: string[];
+  technologies?: string[];
+};
+
+export type ResumeEducation = {
+  degree: string;
+  institution: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  description?: string;
+};
+
+export type ResumeCertification = {
+  name: string;
+  issuer: string;
+  date: string;
+  url?: string;
+};
+
+export type ResumeProjectRef = {
+  slug: string;
+  highlight?: string;
+};
+
+export type ResumeData = {
+  name: string;
+  title: string;
+  tagline: string;
+  location: string;
+  summary: string;
+  contact: ResumeContact[];
+  skillCategories: ResumeSkillCategory[];
+  experience: ResumeExperience[];
+  education: ResumeEducation[];
+  certifications: ResumeCertification[];
+  selectedProjects: ResumeProjectRef[];
+};
+
+export type ResumeUiStrings = {
+  header: {
+    downloadLabel: string;
+    downloadDescription: string;
+  };
+  sections: {
+    summary: string;
+    skills: string;
+    experience: string;
+    education: string;
+    certifications: string;
+    projects: string;
+  };
+  contactNavLabel: string;
+};
+
 

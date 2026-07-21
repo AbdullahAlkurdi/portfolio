@@ -4,8 +4,8 @@ export const footerData: FooterContent = {
   email: "abdullah@example.com",
   copyright: "Abdullah Alkurdi. Built with Next.js.",
   resumeCta: {
-    label: "Download Resume",
-    href: "#",
+    label: "View Resume",
+    href: "/resume",
   },
   social: [
     {

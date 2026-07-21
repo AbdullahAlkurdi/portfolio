@@ -159,3 +159,44 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+@media print {
+  @page {
+    margin: 0.75in;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  nav,
+  .skip-to-content,
+  .mobile-nav {
+    display: none !important;
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  p, li, blockquote, pre {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .print\:block {
+    display: block !important;
+  }
+}
