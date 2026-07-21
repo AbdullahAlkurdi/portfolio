@@ -6,7 +6,7 @@ export const heroData: HeroContent = {
     "Full-stack engineer with a passion for clean architecture, scalable systems, and impactful software. I build production-grade applications that prioritize maintainability, performance, and user experience.",
   primaryCta: {
     label: "View Projects",
-    href: "#projects",
+    href: "/projects",
   },
   secondaryCta: {
     label: "Get in Touch",

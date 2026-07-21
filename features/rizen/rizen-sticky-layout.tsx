@@ -7,6 +7,7 @@ import { Heading } from "@/components/ui/typography/heading";
 import { Body } from "@/components/ui/typography/body";
 import { Badge } from "@/components/ui/badge";
 import { crossfade } from "@/lib/animations/variants";
+import { rizenUi } from "@/content/data/rizen-ui";
 import { CleanArchitecture } from "./diagrams/clean-architecture";
 import { AiLifecycle } from "./diagrams/ai-lifecycle";
 import { Ecosystem } from "./diagrams/ecosystem";
@@ -46,7 +47,7 @@ function SectionVisual({
               </svg>
             </div>
             <p className="text-sm text-muted-foreground">
-              Scroll through the case study
+              {rizenUi.visual.placeholder}
             </p>
           </div>
         </div>
@@ -152,12 +153,12 @@ export function RizenStickyLayout({
           </div>
 
           <div className="mt-16">
-            <Badge variant="secondary" className="mb-3">Ecosystem</Badge>
+            <Badge variant="secondary" className="mb-3">{rizenUi.ecosystem.badge}</Badge>
             <Heading level="2" as="h3" className="mb-4">
-              Product Ecosystem
+              {rizenUi.ecosystem.heading}
             </Heading>
             <Body className="text-muted-foreground mb-6">
-              Rizen is built as a modular ecosystem with clear boundaries between core functionality, AI, cloud infrastructure, analytics, and UI.
+              {rizenUi.ecosystem.paragraph}
             </Body>
             <div className="rounded-xl border border-border bg-surface p-6">
               <Ecosystem nodes={ecosystem} />
@@ -188,12 +189,12 @@ export function RizenStickyLayout({
               ))}
 
               <div>
-                <Badge variant="secondary" className="mb-3">Ecosystem</Badge>
+                <Badge variant="secondary" className="mb-3">{rizenUi.ecosystem.badge}</Badge>
                 <Heading level="2" as="h3" className="mb-4">
-                  Product Ecosystem
+                  {rizenUi.ecosystem.heading}
                 </Heading>
                 <Body className="text-muted-foreground mb-6">
-                  Rizen is built as a modular ecosystem with clear boundaries between core functionality, AI, cloud infrastructure, analytics, and UI.
+                  {rizenUi.ecosystem.paragraph}
                 </Body>
               </div>
             </div>

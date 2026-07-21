@@ -1,23 +1,25 @@
-import RzMdx from "@/content/projects/rizen.mdx";
-import TmMdx from "@/content/projects/tripmate.mdx";
-import MdMdx from "@/content/projects/mindora.mdx";
+import { getProjectComponent } from "@/lib/content/mdx-registry";
 import { projectsUi } from "@/content/data/projects-ui";
-import type { ReactNode } from "react";
-
-const renderers: Record<string, () => ReactNode> = {
-  rizen: () => <RzMdx />,
-  tripmate: () => <TmMdx />,
-  mindora: () => <MdMdx />,
-};
+import { createElement, type ReactElement } from "react";
 
 type ProjectContentProps = {
   slug: string;
 };
 
+const elementCache: Record<string, ReactElement> = {};
+
+function getElement(slug: string): ReactElement | null {
+  if (slug in elementCache) return elementCache[slug];
+  const Component = getProjectComponent(slug);
+  if (!Component) return null;
+  elementCache[slug] = createElement(Component);
+  return elementCache[slug];
+}
+
 export function ProjectContent({ slug }: ProjectContentProps) {
-  const render = renderers[slug];
-  if (!render) {
+  const element = getElement(slug);
+  if (!element) {
     return <p className="text-muted-foreground">{projectsUi.detail.notFoundTitle}</p>;
   }
-  return render();
+  return element;
 }

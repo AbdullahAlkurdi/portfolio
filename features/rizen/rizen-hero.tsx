@@ -5,6 +5,7 @@ import { Container } from "@/components/layout/container";
 import { Badge } from "@/components/ui/badge";
 import { Heading } from "@/components/ui/typography/heading";
 import { Body } from "@/components/ui/typography/body";
+import { fadeInUp } from "@/lib/animations/variants";
 
 type RizenHeroProps = {
   badge: string;
@@ -29,9 +30,9 @@ export function RizenHero({ badge, title, description }: RizenHeroProps) {
       />
       <Container as="div" className="relative z-10 py-20 md:py-28">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
           className="max-w-2xl"
         >
           <Badge variant="primary" className="mb-4">

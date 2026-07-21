@@ -1,4 +1,5 @@
 import { rizenData } from "@/content/data/rizen";
+import { rizenUi } from "@/content/data/rizen-ui";
 import { RizenHero } from "./rizen-hero";
 import { RizenStickyLayout } from "./rizen-sticky-layout";
 import { RizenMetrics } from "./rizen-metrics";
@@ -30,10 +31,10 @@ export function Rizen() {
       <div className="py-16 md:py-20">
         <Container as="div">
           <div className="mb-4 flex items-center gap-2">
-            <Badge variant="info">Engineering Metrics</Badge>
+            <Badge variant="info">{rizenUi.metrics.badge}</Badge>
           </div>
           <Heading level="2" as="h3" className="mb-6">
-            By the Numbers
+            {rizenUi.metrics.heading}
           </Heading>
           <RizenMetrics metrics={metrics} />
         </Container>
@@ -50,9 +51,9 @@ export function Rizen() {
 
       <div className="border-t border-border py-16 md:py-20">
         <Container as="div">
-          <Badge variant="success" className="mb-3">Outcomes</Badge>
+          <Badge variant="success" className="mb-3">{rizenUi.results.badge}</Badge>
           <Heading level="2" as="h3" className="mb-6">
-            Key Results
+            {rizenUi.results.heading}
           </Heading>
           <ul className="space-y-3">
             {results.map((result) => (
@@ -77,9 +78,9 @@ export function Rizen() {
 
       <div className="border-t border-border py-16 md:py-20">
         <Container as="div">
-          <Badge variant="warning" className="mb-3">Coming Next</Badge>
+          <Badge variant="warning" className="mb-3">{rizenUi.roadmap.badge}</Badge>
           <Heading level="2" as="h3" className="mb-6">
-            Roadmap
+            {rizenUi.roadmap.heading}
           </Heading>
           <ul className="space-y-3">
             {roadmap.map((item) => (

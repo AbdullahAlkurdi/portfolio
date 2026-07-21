@@ -11,9 +11,9 @@ export const projectsData: ProjectFrontmatter[] = [
     featured: true,
     date: "2026-06-15",
     readingTime: "8 min read",
+    // TODO: Replace with real repo and demo URLs
     github: "https://github.com",
     demo: "https://example.com",
-    image: "/images/rizen.png",
   },
   {
     slug: "tripmate",
@@ -25,6 +25,7 @@ export const projectsData: ProjectFrontmatter[] = [
     featured: true,
     date: "2026-04-20",
     readingTime: "7 min read",
+    // TODO: Replace with real repo and demo URLs
     github: "https://github.com",
     demo: "https://example.com",
   },
@@ -38,6 +39,7 @@ export const projectsData: ProjectFrontmatter[] = [
     featured: false,
     date: "2026-02-10",
     readingTime: "7 min read",
+    // TODO: Replace with real repo URL
     github: "https://github.com",
   },
 ];

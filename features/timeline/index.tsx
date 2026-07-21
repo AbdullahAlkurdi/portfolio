@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Heading } from "@/components/ui/typography/heading";
@@ -109,8 +110,6 @@ function TimelineMobile() {
     </motion.div>
   );
 }
-
-import { cn } from "@/lib/utils";
 
 export function Timeline() {
   return (
