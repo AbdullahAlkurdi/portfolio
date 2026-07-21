@@ -55,6 +55,31 @@ export type FooterContent = {
   social: SocialLink[];
 };
 
+export type ProjectFrontmatter = {
+  title: string;
+  description: string;
+  tags: string[];
+  category: string;
+  featured: boolean;
+  date: string;
+  slug: string;
+  readingTime: string;
+  github?: string;
+  demo?: string;
+  image?: string;
+};
+
+export type ProjectLink = {
+  label: string;
+  href: string;
+  icon: "github" | "external" | "arrow-right";
+};
+
+export type ProjectSection = {
+  title: string;
+  items: string[];
+};
+
 export type RizenSection = {
   id: string;
   label: string;

@@ -1,0 +1,93 @@
+## Context
+
+Rizen was born from a fundamental observation: existing habit trackers treat personal growth as a checklist. Users check boxes, watch streaks grow, but receive no meaningful insight into their patterns, no adaptive coaching, and no holistic view of their life. The market was saturated with superficial tools that failed to address the complexity of human behavior change.
+
+The engineering challenge was to build a system that could understand context, adapt to individual lifestyles, and evolve with user goals — all while maintaining sub-200ms response times and offline-first reliability.
+
+<Callout variant="info">
+  **Project scope**: 105+ screens across 6 feature domains, 300+ tests, 3 engineers working in parallel, 0 critical bugs in production.
+</Callout>
+
+## Problem
+
+Existing solutions share three critical failures:
+
+**Superficial tracking.** Most apps track binary completion — did you or didn't you? They ignore nuance, context, and the qualitative aspects of habit formation. A meditation session isn't just "done" or "not done"; its quality, duration, and consistency all matter.
+
+**No adaptive intelligence.** Users plateau because the app treats everyone identically. No personalization, no pattern recognition, no proactive suggestions based on user behavior.
+
+**Fragmented experience.** Health, productivity, learning, finance, relationships — users manage these domains across multiple apps. Rizen needed to unify them under a single coherent system.
+
+## Goals
+
+1. **Unified life OS** — One app for habits, routines, goals, and analytics across all life domains
+2. **AI-powered coaching** — Gemini-driven insights that adapt to individual patterns
+3. **Offline-first** — Full functionality without connectivity
+4. **Enterprise-grade** — Clean Architecture, 90%+ test coverage, CI/CD
+5. **Scalable** — Support 10k+ concurrent users from launch
+
+## Architecture
+
+The system follows Clean Architecture with three distinct layers, each with strict dependency rules. The domain layer contains zero framework dependencies — pure Dart business logic that can be tested without Flutter.
+
+<Callout variant="success">
+  **Key decision**: Isolate AI behind a repository interface from day one. This allowed switching from an initial rule-based engine to Gemini without touching domain logic.
+</Callout>
+
+### Presentation Layer
+
+Flutter widgets with BLoC pattern for state management. Each feature (habits, routines, analytics, coaching) has its own module with screens, widgets, BLoCs, and routes. GoRouter handles navigation with deep linking support.
+
+### Domain Layer
+
+Pure Dart classes defining entities, repository interfaces, and use cases. Every business rule is expressed here with no Flutter dependency. This layer is 100% testable in isolation.
+
+### Data Layer
+
+Repository implementations that coordinate between domain models and data sources. DTOs handle serialization. Data sources abstract Firebase, local storage, and platform APIs.
+
+### Infrastructure
+
+Firebase for cloud sync and auth, Isar for local persistence, Gemini for AI, platform channels for native features.
+
+## Key Decisions
+
+<Callout variant="warning">
+  **Tradeoff**: BLoC over Riverpod. BLoC provides stricter state management guarantees and better testability at the cost of more boilerplate. For a production app with 3 engineers, the ceremony was worth the safety.
+</Callout>
+
+### Why BLoC?
+
+Predictable state machines. Every state transition is explicit. Testing is straightforward — feed events, assert states. The pattern scales well across feature boundaries.
+
+### Why Isar over Hive?
+
+Isar provides type-safe queries, relations, and indexes with minimal overhead. The offline-first architecture required a local database that could handle complex queries without performance degradation.
+
+### Why Gemini?
+
+Gemini's multimodal capabilities allowed us to process not just text but also user-uploaded images (journal scans, progress photos) within a single model. The response latency met our sub-200ms target for 95th percentile requests.
+
+## Results
+
+The architecture delivered measurable outcomes:
+
+- **90% test coverage** on domain and data layers
+- **70% reduction** in bug rate compared to previous monolithic architecture
+- **Zero merge conflicts** across 3 parallel feature tracks over 6 months
+- **40% user retention increase** attributed to AI coaching features
+- **Sub-200ms AI response** for 95th percentile requests
+
+## Lessons Learned
+
+1. **Invest in repository interfaces early.** The AI repository abstraction saved months when we switched from rule-based to ML-based coaching.
+2. **Domain purity pays dividends.** The ability to run domain tests without Flutter made the feedback loop 10x faster.
+3. **Don't over-abstract early.** Some layers went through unnecessary indirection before we stabilized the architecture.
+
+## Future Work
+
+- Social features and team challenges for group accountability
+- Advanced analytics with predictive insights using historical patterns
+- Wearable device integration for passive data collection
+- Open API for third-party extensions and integrations
+- Reinforcement learning for adaptive AI coaching strategies

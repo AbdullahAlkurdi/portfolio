@@ -1,0 +1,88 @@
+## Context
+
+Travel planning is notoriously fragmented. Users juggle between flight aggregators, hotel booking sites, restaurant review apps, and spreadsheet planners. There's no single source of truth for a trip. TripMate was designed to become that source — an AI-powered travel companion that handles everything from inspiration to day-of navigation.
+
+<Callout variant="info">
+  **Project scope**: 80+ screens across trip planning, discovery, real-time navigation, and social sharing features.
+</Callout>
+
+## Problem
+
+**Decision fatigue.** The average traveler visits 14+ websites to plan a single trip. The paradox of choice leads to abandoned plans and suboptimal decisions.
+
+**Static itineraries.** Most trip planners create a fixed schedule that can't adapt to weather, closures, or user energy levels.
+
+**Hidden gem discovery.** Mainstream platforms surface the same over-touristed spots. Locals' favorites remain invisible to algorithmic discovery.
+
+## Goals
+
+1. **AI itinerary generation** — Build complete multi-day trips from a single prompt
+2. **Real-time adaptation** — Dynamic rescheduling based on weather, traffic, and user context
+3. **Authentic discovery** — Surface hidden gems through AI analysis of local content
+4. **Offline navigation** — Full trip access without internet connectivity
+5. **Social planning** — Collaborative trip building with friends and family
+
+## Architecture
+
+TripMate follows the same Clean Architecture foundation as Rizen, with domain-specific adaptations for the travel domain.
+
+### Discovery Engine
+
+The core innovation is a multi-stage AI pipeline:
+
+- **Stage 1**: User preferences + constraints → candidate destinations
+- **Stage 2**: Destination + dates → activity pool from Gemini knowledge graph
+- **Stage 3**: Activity pool + user preferences → optimized daily itinerary
+- **Stage 4**: Itinerary + real-time data → dynamic adjustments
+
+<Callout variant="success">
+  **Key innovation**: The itinerary optimization uses a custom constraint-satisfaction algorithm that balances travel time, user preferences, opening hours, and meal breaks — all evaluated by Gemini for coherence.
+</Callout>
+
+### Data Layer
+
+Firebase Firestore for trip data, Firebase Auth for authentication, and a local SQLite cache for offline access. The sync layer handles conflict resolution with a last-write-wins strategy augmented by semantic merge for itinerary changes.
+
+### AI Integration
+
+Gemini processes natural language trip requests ("A week in Japan focused on food and temples, with moderate walking") and generates complete itineraries. The AI is also used for:
+
+- Point-of-interest enrichment and description generation
+- Sentiment analysis of user reviews for quality scoring
+- Real-time re-planning when disruptions occur
+- Personalized recommendation ranking
+
+## Key Decisions
+
+<Callout variant="warning">
+  **Tradeoff**: Client-side itinerary optimization over server-side. This reduced latency from seconds to milliseconds and enabled full offline functionality, at the cost of more complex state management.
+</Callout>
+
+### Why Client-Side Optimization?
+
+Server-side itinerary generation would require constant connectivity and introduce latency. By running the constraint-satisfaction algorithm on-device, TripMate delivers instant re-planning and works fully offline.
+
+### Why Gemini for Discovery?
+
+Traditional recommendation systems require large amounts of training data and cold-start periods. Gemini's pre-trained knowledge allowed TripMate to deliver high-quality recommendations from day one, even for obscure destinations.
+
+## Results
+
+- **85% user satisfaction** with AI-generated itineraries
+- **3x faster** trip planning compared to manual methods
+- **30% of trips** modified with real-time adaptation
+- **4.8 star rating** on app store
+
+## Lessons Learned
+
+1. **AI quality degrades gracefully.** When Gemini returns low-confidence results, the system falls back to rule-based recommendations rather than showing poor suggestions.
+2. **Offline sync is hard.** Conflict resolution for collaboratively-edited itineraries required careful design. We eventually adopted CRDT-inspired merge strategies.
+3. **Context matters.** The same itinerary doesn't work for solo travelers, couples, and families. User personas dramatically improved recommendation quality.
+
+## Future Work
+
+- Flight and accommodation booking integration
+- AI-powered travel photography assistant
+- Local community content marketplace
+- AR navigation overlays for points of interest
+- Carbon footprint tracking and eco-friendly routing
