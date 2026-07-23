@@ -34,7 +34,7 @@ export function Rizen() {
             <Badge variant="info">{rizenUi.metrics.badge}</Badge>
           </div>
           <Heading level="2" as="h3" className="mb-6">
-            {rizenUi.metrics.heading}
+            Architecture Overview
           </Heading>
           <RizenMetrics metrics={metrics} />
         </Container>
@@ -53,7 +53,7 @@ export function Rizen() {
         <Container as="div">
           <Badge variant="success" className="mb-3">{rizenUi.results.badge}</Badge>
           <Heading level="2" as="h3" className="mb-6">
-            {rizenUi.results.heading}
+            Engineering Outcomes
           </Heading>
           <ul className="space-y-3">
             {results.map((result) => (

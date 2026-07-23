@@ -13,7 +13,7 @@ export function ResumePrintButton() {
         size="sm"
         onClick={() => window.print()}
       >
-        <Printer size={14} />
+        <Printer size={14} aria-hidden="true" />
         {resumeUi.header.downloadLabel}
       </Button>
       <Body size="sm" className="mt-2 text-muted-foreground">

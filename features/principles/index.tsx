@@ -13,14 +13,42 @@ import {
   fadeInUpView,
 } from "@/lib/animations/variants";
 
-const iconMap: Record<string, string> = {
-  layers: "⊕",
-  blocks: "⊞",
-  "trending-up": "↗",
-  accessibility: "◉",
-  zap: "⚡",
-  code: "⟨/⟩",
-};
+function PrincipleIcon({ icon }: { icon: string }) {
+  const icons: Record<string, React.ReactNode> = {
+    layers: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="12 2 2 7 12 12 22 7 12 2" /><polyline points="2 17 12 22 22 17" /><polyline points="2 12 12 17 22 12" />
+      </svg>
+    ),
+    blocks: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" />
+      </svg>
+    ),
+    "trending-up": (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" />
+      </svg>
+    ),
+    accessibility: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="16" cy="4" r="1" /><path d="m18 19 1-7-6 1" /><path d="m5 8 3-3 5.5 3-2.36 3.5" /><path d="M4.24 14.5a5 5 0 0 0 6.88 6" /><path d="M13.76 17.5a5 5 0 0 0-6.88-6" />
+      </svg>
+    ),
+    zap: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+      </svg>
+    ),
+    code: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" />
+      </svg>
+    ),
+  };
+
+  return <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-primary-muted text-primary" aria-hidden="true">{icons[icon] ?? "◆"}</span>;
+}
 
 export function Principles() {
   return (
@@ -54,14 +82,9 @@ export function Principles() {
             <motion.div
               key={principle.title}
               variants={staggerItem}
-              className="group rounded-xl border border-border bg-surface p-6 transition-colors hover:bg-surface-hover"
+              className="group rounded-xl border border-border bg-surface p-6 transition-all duration-300 hover:border-primary/20 hover:shadow-md"
             >
-              <span
-                className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-primary-muted text-lg text-primary"
-                aria-hidden="true"
-              >
-                {iconMap[principle.icon] ?? "◆"}
-              </span>
+              <PrincipleIcon icon={principle.icon} />
               <Heading level="4" className="mb-2">
                 {principle.title}
               </Heading>

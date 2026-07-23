@@ -20,25 +20,40 @@
 - [x] Layout primitives
 - [x] Core UI components (Button, Card, Badge, Tag, Icon, ThemeToggle, Tooltip, Accordion, Metric, Stat, Callout, CodeBlock)
 
-## Phase 3 — Core Layout
+## Phase 3 — Core Layout ✅
 
-- [ ] Responsive navigation
-- [ ] Theme toggle integration
-- [ ] Footer
+- [x] Responsive navigation (desktop sticky + mobile floating)
+- [x] Theme toggle integration
+- [x] Footer
 - [ ] Page transitions
 
-## Phase 4 — Content & Pages
+## Phase 4 — Content & Pages ✅
 
-- [ ] Hero section
-- [ ] About page
-- [ ] Projects page with MDX content
-- [ ] Project detail pages
+- [x] Hero section
+- [x] About section (Principles + Timeline)
+- [x] Projects page with MDX content
+- [x] Project detail pages (2 case studies: Rizen, TripMate)
 - [ ] Contact section
 
-## Phase 5 — Polish
+## Phase 5 — Polish ✅
 
-- [ ] Performance optimization
-- [ ] SEO metadata
-- [ ] Accessibility audit
+- [x] Performance optimization (static generation, SSG)
+- [x] SEO metadata (sitemap, robots, per-page OG/Twitter)
+- [x] Accessibility audit (skip-to-content, aria-current, landmarks, focus rings, reduced motion)
+- [x] Accessibility audit (skip-to-content, aria-current, landmarks, focus rings, reduced motion)
 - [ ] Analytics integration
-- [ ] Deployment configuration
+- [x] Deployment configuration (CI/CD via GitHub Actions)
+
+## Milestone 6 — Professional Resume System ✅
+
+- [x] Data-driven resume page with print support
+- [x] Empty section handling (Experience, Education, Certifications hidden when empty)
+- [x] Resume projects section linking to case studies
+
+## Milestone 7 — JustTags Case Study
+
+- [ ] Add JustTags as a featured project in the portfolio
+- [ ] Create JustTags project data entry in `content/data/projects.ts`
+- [ ] Write JustTags MDX case study in `content/projects/`
+- [ ] Register MDX module in `lib/content/mdx-registry.ts`
+- [ ] Add JustTags UI strings if needed

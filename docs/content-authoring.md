@@ -4,18 +4,11 @@
 
 Project content is authored as MDX files in `content/projects/`.
 
-### Frontmatter
+### Note on Metadata
 
-Use YAML frontmatter for metadata:
+Project metadata (title, description, tags, date) is defined in `content/data/projects.ts`, not in the MDX files themselves. MDX files contain only the body content.
 
-```mdx
----
-title: Project Title
-description: Brief description
-tags: ["React", "TypeScript"]
-date: 2026-01-01
----
-```
+The MDX registry in `lib/content/mdx-registry.ts` maps each project slug to its MDX module.
 
 ### Custom Components
 

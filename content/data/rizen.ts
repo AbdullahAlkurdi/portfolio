@@ -2,29 +2,23 @@ import type { RizenContent } from "@/types/content";
 
 export const rizenData: RizenContent = {
   hero: {
-    badge: "Flagship Product",
+    badge: "Flagship Project",
     title: "Rizen — Habit & Life OS",
     description:
-      "A production-grade Flutter application with 105+ screens, Clean Architecture, AI-powered coaching, and 300+ tests. An engineering case study in scalable mobile architecture.",
+      "A Flutter habit and life operating system built with Clean Architecture, BLoC state management, Firebase backend, and Gemini AI coaching.",
   },
   sections: [
     {
       id: "vision",
       label: "Vision",
       content:
-        "Rizen is a comprehensive habit and life operating system designed to help users build consistent routines, track progress across multiple domains, and achieve long-term personal growth through data-driven insights and AI-powered coaching.",
+        "Rizen is a habit and life operating system designed to help users build consistent routines, track progress across multiple domains, and achieve personal growth through data-driven insights and AI-powered coaching.",
     },
     {
       id: "problem",
       label: "Problem",
       content:
         "Existing habit trackers are superficial — they track checkboxes but fail to provide meaningful insights, adaptive coaching, or holistic life management. Users need a system that understands context, adapts to their lifestyle, and evolves with their goals.",
-    },
-    {
-      id: "constraints",
-      label: "Constraints",
-      content:
-        "Offline-first operation, sub-200ms response time for AI queries, support for 10k+ concurrent users, cross-platform consistency, and enterprise-grade data privacy. Every architectural decision was evaluated against these constraints.",
     },
     {
       id: "architecture",
@@ -39,16 +33,10 @@ export const rizenData: RizenContent = {
         "Gemini-powered AI coach that analyzes user patterns, provides personalized recommendations, and adapts coaching strategies based on progress. The AI layer is isolated behind a repository interface, allowing provider swaps without affecting domain logic.",
     },
     {
-      id: "results",
-      label: "Results",
+      id: "current-status",
+      label: "Current Status",
       content:
-        "105+ screens delivered across 6 feature domains. 300+ tests covering unit, widget, and integration layers. Zero critical bugs in production. Clean Architecture enabled parallel feature development by 3 engineers without merge conflicts.",
-    },
-    {
-      id: "roadmap",
-      label: "Roadmap",
-      content:
-        "Social features, team challenges, advanced analytics dashboards, wearable device integration, and an open API for third-party extensions. Continuous refinement of the AI coaching engine with reinforcement learning.",
+        "Rizen is under active development. Core architecture is implemented with Clean Architecture layers, BLoC state management, and Firebase integration. AI coaching with Gemini is in progress. The project serves as a learning platform for advanced Flutter patterns and mobile architecture patterns.",
     },
   ],
   architecture: [
@@ -90,22 +78,22 @@ export const rizenData: RizenContent = {
     { name: "UI", description: "Flutter widget library, design system, animations, theming" },
   ],
   metrics: [
-    { label: "Screens", value: "105+", description: "Production screens across 6 feature domains" },
-    { label: "Tests", value: "300+", description: "Unit, widget, and integration tests" },
-    { label: "Architecture", value: "Clean", description: "Strict three-layer separation with BLoC" },
-    { label: "Production", value: "Ready", description: "Zero critical bugs, CI/CD pipeline active" },
+    { label: "Architecture", value: "Clean", description: "Three-layer separation with BLoC pattern" },
+    { label: "State Management", value: "BLoC", description: "Predictable, testable state management" },
+    { label: "Backend", value: "Firebase", description: "Authentication, Firestore, cloud functions" },
+    { label: "AI", value: "Gemini", description: "AI-powered coaching integration" },
   ],
   results: [
-    "Achieved 90% test coverage on domain layer",
-    "Reduced bug rate by 70% compared to previous architecture",
-    "Enabled 3 engineers to work in parallel without merge conflicts",
-    "AI coaching feature increased user retention by 40%",
+    "Clean Architecture enables maintainable and testable code",
+    "BLoC pattern provides predictable state management across features",
+    "Firebase integration handles authentication and data persistence",
+    "Gemini AI integration brings intelligent coaching capabilities",
   ],
   roadmap: [
+    "Complete core habit tracking features",
+    "Implement AI coaching with pattern analysis",
+    "Add analytics dashboards and streak tracking",
     "Social features and team challenges",
-    "Advanced analytics with predictive insights",
     "Wearable device integration",
-    "Open API for third-party extensions",
-    "Reinforcement learning for AI coach",
   ],
 };

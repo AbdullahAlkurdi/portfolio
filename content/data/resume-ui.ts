@@ -8,10 +8,13 @@ export const resumeUi: ResumeUiStrings = {
   sections: {
     summary: "Professional Summary",
     skills: "Technical Skills",
-    experience: "Experience",
+    softSkills: "Soft Skills",
+    experience: "Professional Experience",
     education: "Education",
     certifications: "Certifications",
+    courses: "Courses & Additional Learning",
     projects: "Selected Projects",
+    languages: "Languages",
   },
   contactNavLabel: "Contact links",
 };

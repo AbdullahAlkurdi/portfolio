@@ -105,6 +105,22 @@ const components: MDXComponents = {
       )}
     </figure>
   ),
+  Image: ({ alt, src, ...props }) => (
+    <figure className="mb-6 mt-6 last:mb-0">
+      <img
+        src={src}
+        alt={alt ?? ""}
+        className="w-full rounded-lg border border-border"
+        loading="lazy"
+        {...props}
+      />
+      {alt && (
+        <figcaption className="mt-2 text-center text-sm text-muted-foreground">
+          {alt}
+        </figcaption>
+      )}
+    </figure>
+  ),
   table: ({ children, ...props }) => (
     <div className="mb-4 overflow-x-auto last:mb-0">
       <table

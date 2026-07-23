@@ -1,0 +1,23 @@
+# Cloudflare Workers secrets for Firebase Admin SDK + Google Drive
+# Set these using `wrangler secret put <NAME>` for production
+# Copy to .dev.vars for local preview
+
+# Firebase Admin SDK credentials (server-side only)
+FIREBASE_PROJECT_ID=portfolio-kurdi
+FIREBASE_CLIENT_EMAIL=firebase-adminsdk-fbsvc@portfolio-kurdi.iam.gserviceaccount.com
+FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMII...\n-----END PRIVATE KEY-----\n"
+
+# Google Drive Media Storage (server-side only - OAuth 2.0)
+# Run `node scripts/setup-drive-oauth.mjs` to obtain these values.
+GOOGLE_OAUTH_CLIENT_ID=your-oauth-client-id
+GOOGLE_OAUTH_CLIENT_SECRET=your-oauth-client-secret
+GOOGLE_OAUTH_REFRESH_TOKEN=your-refresh-token
+GOOGLE_DRIVE_ROOT_FOLDER_ID=your-root-folder-id
+
+# Optional sub-folder IDs
+GOOGLE_DRIVE_PROFILE_FOLDER_ID=
+GOOGLE_DRIVE_PROJECTS_FOLDER_ID=
+GOOGLE_DRIVE_CERTIFICATIONS_FOLDER_ID=
+GOOGLE_DRIVE_DOCUMENTS_FOLDER_ID=
+
+# Firebase Client SDK vars are bundled at build time from .env.local / env vars

@@ -136,7 +136,7 @@ export function RizenStickyLayout({
                 <Badge variant="secondary" className="mb-3">
                   {section.label}
                 </Badge>
-                <Heading level="2" as="h3" className="mb-4">
+                <Heading level="3" as="h3" className="mb-4">
                   {section.label}
                 </Heading>
                 <Body className="text-muted-foreground">{section.content}</Body>
@@ -154,7 +154,7 @@ export function RizenStickyLayout({
 
           <div className="mt-16">
             <Badge variant="secondary" className="mb-3">{rizenUi.ecosystem.badge}</Badge>
-            <Heading level="2" as="h3" className="mb-4">
+            <Heading level="3" as="h3" className="mb-4">
               {rizenUi.ecosystem.heading}
             </Heading>
             <Body className="text-muted-foreground mb-6">
@@ -181,7 +181,7 @@ export function RizenStickyLayout({
                   <Badge variant="secondary" className="mb-3">
                     {section.label}
                   </Badge>
-                  <Heading level="2" as="h3" className="mb-4">
+                  <Heading level="3" as="h3" className="mb-4">
                     {section.label}
                   </Heading>
                   <Body className="text-muted-foreground">{section.content}</Body>
@@ -190,7 +190,7 @@ export function RizenStickyLayout({
 
               <div>
                 <Badge variant="secondary" className="mb-3">{rizenUi.ecosystem.badge}</Badge>
-                <Heading level="2" as="h3" className="mb-4">
+                <Heading level="3" as="h3" className="mb-4">
                   {rizenUi.ecosystem.heading}
                 </Heading>
                 <Body className="text-muted-foreground mb-6">
@@ -202,7 +202,7 @@ export function RizenStickyLayout({
             {/* Right column: sticky diagram */}
             <div className="relative">
               <div className="sticky top-24" style={{ minHeight: "calc(100vh - 8rem)" }}>
-                <div className="flex h-full min-h-[400px] items-center justify-center rounded-xl border border-border bg-surface p-6">
+                <div className="flex h-full min-h-[400px] items-center justify-center rounded-xl border border-border bg-surface p-6" aria-live="polite" aria-label="Case study diagram">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={currentDiagramId}

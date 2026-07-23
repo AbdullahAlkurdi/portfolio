@@ -38,7 +38,7 @@ export function RizenHero({ badge, title, description }: RizenHeroProps) {
           <Badge variant="primary" className="mb-4">
             {badge}
           </Badge>
-          <Heading level="1" as="h2" className="mb-4">
+          <Heading level="2" as="h2" className="mb-4">
             {title}
           </Heading>
           <Body size="lg" className="text-muted-foreground">

@@ -8,7 +8,7 @@ export type NavItem = {
 export type SocialLink = {
   label: string;
   href: string;
-  icon: "github" | "linkedin" | "mail";
+  icon: "github" | "linkedin" | "mail" | "instagram" | "facebook" | "telegram" | "whatsapp";
 };
 
 export type HeroContent = {
@@ -43,7 +43,6 @@ export type TimelineEvent = {
 };
 
 export type FooterContent = {
-  email: string;
   copyright: string;
   resumeCta: {
     label: string;
@@ -57,7 +56,7 @@ export type SiteConfig = {
   name: string;
   title: string;
   description: string;
-  ogImage: string;
+  ogImage?: string;
 };
 
 export type ProjectFrontmatter = {
@@ -72,6 +71,16 @@ export type ProjectFrontmatter = {
   github?: string;
   demo?: string;
   image?: string;
+  longDescription?: string;
+  problem?: string;
+  solution?: string;
+  architecture?: string;
+  keyFeatures?: string;
+  challenges?: string;
+  decisions?: string;
+  results?: string;
+  lessons?: string;
+  timeline?: string;
 };
 
 export type ProjectsUiStrings = {
@@ -176,15 +185,15 @@ export type ResumeEducation = {
   degree: string;
   institution: string;
   location: string;
-  startDate: string;
-  endDate: string;
+  startDate?: string;
+  endDate?: string;
   description?: string;
 };
 
 export type ResumeCertification = {
   name: string;
   issuer: string;
-  date: string;
+  date?: string;
   url?: string;
 };
 
@@ -204,6 +213,9 @@ export type ResumeData = {
   experience: ResumeExperience[];
   education: ResumeEducation[];
   certifications: ResumeCertification[];
+  softSkills: string[];
+  languages: { language: string; proficiency: string }[];
+  courses: { name: string; issuer: string }[];
   selectedProjects: ResumeProjectRef[];
 };
 
@@ -215,10 +227,13 @@ export type ResumeUiStrings = {
   sections: {
     summary: string;
     skills: string;
+    softSkills: string;
     experience: string;
     education: string;
     certifications: string;
+    courses: string;
     projects: string;
+    languages: string;
   };
   contactNavLabel: string;
 };

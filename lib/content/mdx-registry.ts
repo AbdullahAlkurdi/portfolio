@@ -1,12 +1,12 @@
 import RzMdx from "@/content/projects/rizen.mdx";
 import TmMdx from "@/content/projects/tripmate.mdx";
-import MdMdx from "@/content/projects/mindora.mdx";
+import SmMdx from "@/content/projects/social-media-app.mdx";
 import type { ComponentType } from "react";
 
 const mdxRegistry: Record<string, ComponentType> = {
   rizen: RzMdx,
   tripmate: TmMdx,
-  mindora: MdMdx,
+  "social-media-app": SmMdx,
 };
 
 export function getProjectComponent(slug: string): ComponentType | null {

@@ -26,6 +26,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const { frontmatter } = project;
   const url = `${siteConfig.url}/projects/${slug}`;
+  const ogImage = siteConfig.ogImage
+    ? { url: `${siteConfig.url}${siteConfig.ogImage}` }
+    : undefined;
 
   return {
     title: `${frontmatter.title} — ${siteConfig.name}`,
@@ -37,13 +40,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       publishedTime: frontmatter.date,
       url,
-      images: [{ url: `${siteConfig.url}${siteConfig.ogImage}` }],
+      ...(ogImage && { images: [ogImage] }),
     },
     twitter: {
       card: "summary_large_image",
       title: `${frontmatter.title} — ${siteConfig.name}`,
       description: frontmatter.description,
-      images: [`${siteConfig.url}${siteConfig.ogImage}`],
+      ...(ogImage && { images: [ogImage.url] }),
     },
   };
 }

@@ -45,6 +45,12 @@ next-env.d.ts
 *.swp
 *.swo
 
+# credentials
+*service-account*.json
+*credentials*.json
+*.key
+google-oauth-client.json
+
 # OS
 Thumbs.db
 
@@ -57,3 +63,6 @@ Thumbs.db
 !.dev.vars.example
 
 !.env.example
+
+# OAuth credentials
+google-oauth-client.json

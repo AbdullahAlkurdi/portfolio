@@ -1,0 +1,84 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'abdullah.h.alkurdi@gmail.com';
+    }
+
+    match /site/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /identity/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /projects/{projectId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /working/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /skills/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /knowledge/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /experience/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /education/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /certifications/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /courses/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /learning/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /timeline/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /social/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /media/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

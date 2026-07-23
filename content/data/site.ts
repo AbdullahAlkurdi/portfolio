@@ -3,8 +3,7 @@ import type { SiteConfig } from "@/types/content";
 export const siteConfig: SiteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://abdullahalkurdi.dev",
   name: "Abdullah Alkurdi",
-  title: "Abdullah Alkurdi — Engineering Portfolio",
+  title: "Abdullah Alkurdi — IT Specialist & Software Engineer",
   description:
-    "Full-stack engineer passionate about clean architecture, scalable systems, and impactful software.",
-  ogImage: "/og-image.png",
+    "IT Specialist & Software Engineer based in Makkah, Saudi Arabia. Flutter, Python, networking, IT support, and clean architecture.",
 };

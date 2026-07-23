@@ -3,13 +3,19 @@ import { Body } from "@/components/ui/typography/body";
 import { resumeData } from "@/content/data/resume";
 import { resumeUi } from "@/content/data/resume-ui";
 import { ResumePrintButton } from "./resume-print-button";
-import { Mail, Code2, Globe, ExternalLink } from "lucide-react";
+import { Mail, Code2, Globe, ExternalLink, Camera, Users, Send, MessageSquare, Phone } from "lucide-react";
 
 const contactIcons: Record<string, React.ReactNode> = {
-  Email: <Mail size={14} />,
-  GitHub: <Code2 size={14} />,
-  LinkedIn: <Globe size={14} />,
-  Portfolio: <ExternalLink size={14} />,
+  Email: <Mail size={14} aria-hidden="true" />,
+  Phone: <Phone size={14} aria-hidden="true" />,
+  GitHub: <Code2 size={14} aria-hidden="true" />,
+  LinkedIn: <Globe size={14} aria-hidden="true" />,
+  Portfolio: <ExternalLink size={14} aria-hidden="true" />,
+  Linktree: <ExternalLink size={14} aria-hidden="true" />,
+  Instagram: <Camera size={14} aria-hidden="true" />,
+  Facebook: <Users size={14} aria-hidden="true" />,
+  Telegram: <Send size={14} aria-hidden="true" />,
+  WhatsApp: <MessageSquare size={14} aria-hidden="true" />,
 };
 
 export function ResumeHeader() {
@@ -18,11 +24,11 @@ export function ResumeHeader() {
       <div className="space-y-3">
         <div>
           <Heading level="1" as="h1">{resumeData.name}</Heading>
-          <Heading level="2" as="span" className="mt-1 text-primary">{resumeData.title}</Heading>
+          <Heading level="2" as="h2" className="mt-1 text-primary">{resumeData.title}</Heading>
           <Body size="sm" className="mt-1 text-muted-foreground">{resumeData.location}</Body>
         </div>
         <Body size="sm" className="max-w-xl text-muted-foreground">{resumeData.tagline}</Body>
-        <nav aria-label={resumeUi.contactNavLabel} className="flex flex-wrap gap-3">
+        <nav aria-label={resumeUi.contactNavLabel} className="flex flex-wrap gap-x-4 gap-y-1">
           {resumeData.contact.map((link) => (
             <a
               key={link.label}

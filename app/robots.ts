@@ -3,10 +3,13 @@ import { siteConfig } from "@/content/data/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-    },
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: "/admin/",
+      },
+    ],
     sitemap: `${siteConfig.url}/sitemap.xml`,
   };
 }

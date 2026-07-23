@@ -5,15 +5,12 @@ export const projectsData: ProjectFrontmatter[] = [
     slug: "rizen",
     title: "Rizen — Habit & Life OS",
     description:
-      "A production-grade Flutter application with 105+ screens, Clean Architecture, AI-powered coaching, and 300+ tests.",
+      "A Flutter habit and life operating system built with Clean Architecture, BLoC state management, Firebase backend, and Gemini AI coaching.",
     tags: ["Flutter", "Dart", "Clean Architecture", "BLoC", "Firebase", "Gemini AI"],
     category: "Mobile App",
     featured: true,
     date: "2026-06-15",
     readingTime: "8 min read",
-    // TODO: Replace with real repo and demo URLs
-    github: "https://github.com",
-    demo: "https://example.com",
   },
   {
     slug: "tripmate",
@@ -25,21 +22,17 @@ export const projectsData: ProjectFrontmatter[] = [
     featured: true,
     date: "2026-04-20",
     readingTime: "7 min read",
-    // TODO: Replace with real repo and demo URLs
-    github: "https://github.com",
-    demo: "https://example.com",
   },
+
   {
-    slug: "mindora",
-    title: "Mindora — Mindful AI Journaling",
+    slug: "social-media-app",
+    title: "Social Media App — Graduation Project",
     description:
-      "A private, AI-enhanced journaling app that helps users process thoughts, track emotional patterns, and cultivate self-awareness through intelligent reflection.",
-    tags: ["Flutter", "Dart", "Firebase", "BLoC", "Clean Architecture", "Gemini AI"],
+      "A cross-platform social media application developed as a graduation project, featuring UI design, process flows, and team collaboration using Flutter and Dart.",
+    tags: ["Flutter", "Dart", "Cross-platform", "UI Design", "Team Collaboration"],
     category: "Mobile App",
     featured: false,
-    date: "2026-02-10",
-    readingTime: "7 min read",
-    // TODO: Replace with real repo URL
-    github: "https://github.com",
+    date: "2025-12-01",
+    readingTime: "5 min read",
   },
 ];
