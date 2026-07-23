@@ -18,10 +18,15 @@ const levelColors: Record<string, string> = {
 };
 
 function DomainIcon({ icon, size = 22 }: { icon: string; size?: number }) {
+  const { dir } = useLocale();
   const icons: Record<string, React.ReactNode> = {
     code: (
       <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" />
+        {dir === "rtl" ? (
+          <><polyline points="8 18 2 12 8 6" /><polyline points="16 6 22 12 16 18" /></>
+        ) : (
+          <><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></>
+        )}
       </svg>
     ),
     smartphone: (
@@ -78,6 +83,7 @@ export function KnowledgeBase() {
   const { locale } = useLocale();
   const { knowledgeDomains } = useContent();
   const content = getSiteContent(locale).knowledge;
+  const ui = getSiteContent(locale).ui;
   const domains = knowledgeDomains;
 
   return (
@@ -119,11 +125,11 @@ export function KnowledgeBase() {
                       {locale === "ar" ? domain.nameAr : domain.name}
                     </h3>
                     <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium mt-1 ${levelColors[domain.level]}`}>
-                      {domain.level === "Proficient" ? (locale === "ar" ? "متمكن" : domain.level) :
-                       domain.level === "Intermediate" ? (locale === "ar" ? "متوسط" : domain.level) :
-                       domain.level === "Developing" ? (locale === "ar" ? "قيد التطوير" : domain.level) :
-                       domain.level === "Learning" ? (locale === "ar" ? "يتعلم" : domain.level) :
-                       locale === "ar" ? "يستكشف" : domain.level}
+                      {domain.level === "Proficient" ? ui.levelLabels.proficient :
+                       domain.level === "Intermediate" ? ui.levelLabels.intermediate :
+                       domain.level === "Developing" ? ui.levelLabels.developing :
+                       domain.level === "Learning" ? ui.levelLabels.learning :
+                       ui.levelLabels.exploring}
                     </span>
                   </div>
                 </div>

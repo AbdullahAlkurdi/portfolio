@@ -23,7 +23,7 @@ export default function AdminSkillsPage() {
   useEffect(() => {
     async function load() {
       try {
-        const { db } = getFirebaseClient()
+        const { db } = await getFirebaseClient()
         const snapshot = await getDocs(collection(db, "skills"))
         if (!snapshot.empty) {
           const list = snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as SkillCategory))
@@ -46,7 +46,7 @@ export default function AdminSkillsPage() {
   const handleAdd = async () => {
     if (!newCategory.trim()) return
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       const docRef = await addDoc(collection(db, "skills"), {
         category: newCategory,
         skills: newSkills,
@@ -60,7 +60,7 @@ export default function AdminSkillsPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       await deleteDoc(doc(db, "skills", id))
       setCategories((prev) => prev.filter((c) => c.id !== id))
     } catch {}

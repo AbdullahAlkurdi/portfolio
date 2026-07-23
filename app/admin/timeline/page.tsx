@@ -25,7 +25,7 @@ export default function AdminTimelinePage() {
   useEffect(() => {
     async function load() {
       try {
-        const { db } = getFirebaseClient()
+        const { db } = await getFirebaseClient()
         const q = query(collection(db, "timeline"), orderBy("order", "asc"))
         const snapshot = await getDocs(q)
         setItems(snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as TimelineEvent)))
@@ -37,7 +37,7 @@ export default function AdminTimelinePage() {
   const handleAdd = async () => {
     if (!newTitle.trim() || !newYear.trim()) return
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       const docRef = await addDoc(collection(db, "timeline"), {
         year: newYear,
         title: newTitle,
@@ -54,7 +54,7 @@ export default function AdminTimelinePage() {
 
   const handleDelete = async (id: string) => {
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       await deleteDoc(doc(db, "timeline", id))
       setItems((prev) => prev.filter((i) => i.id !== id))
     } catch {}

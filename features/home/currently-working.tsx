@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { useLocale } from "@/lib/locale-context";
 import { getSiteContent } from "@/content/data/content";
-import { ArrowRight, Clock, Code2 } from "lucide-react";
+import { ArrowRight, ArrowLeft, Clock, Code2 } from "lucide-react";
 import Link from "next/link";
 
 const statusColors = {
@@ -17,14 +17,15 @@ const statusColors = {
 } as const;
 
 const statusLabels = {
-  active: "Active Development",
-  paused: "Paused",
-  planning: "Planning",
+  active: "active",
+  paused: "paused",
+  planning: "planning",
 } as const;
 
 export function CurrentlyWorking() {
-  const { locale } = useLocale();
+  const { locale, dir } = useLocale();
   const content = getSiteContent(locale).currentlyWorking;
+  const ui = getSiteContent(locale).ui;
 
   return (
     <Section id="currently-working" spacing="lg" className="bg-muted/30">
@@ -61,7 +62,7 @@ export function CurrentlyWorking() {
                   <div className="flex items-start justify-between mb-3">
                     <Badge variant="primary">{item.phase}</Badge>
                     <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${statusColors[item.status]}`}>
-                      {statusLabels[item.status]}
+                      {ui.projectStatus[statusLabels[item.status]]}
                     </span>
                   </div>
                   <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
@@ -86,8 +87,8 @@ export function CurrentlyWorking() {
                     ))}
                   </div>
                   <div className="flex items-center gap-1 text-sm text-primary font-medium">
-                    View details
-                    <ArrowRight size={14} />
+                    {locale === "ar" ? "عرض التفاصيل" : "View details"}
+                    {dir === "rtl" ? <ArrowLeft size={14} /> : <ArrowRight size={14} />}
                   </div>
                 </Card>
               </Link>

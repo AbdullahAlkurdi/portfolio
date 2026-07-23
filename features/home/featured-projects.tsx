@@ -8,32 +8,33 @@ import { Button } from "@/components/ui/button";
 import { useLocale } from "@/lib/locale-context";
 import { getSiteContent } from "@/content/data/content";
 import { useContent } from "@/lib/content/content-provider";
-import { ArrowRight, BookOpen, Construction, FlaskConical, GraduationCap } from "lucide-react";
+import { ArrowRight, ArrowLeft, BookOpen, Construction, FlaskConical, GraduationCap } from "lucide-react";
 import Link from "next/link";
 import { useMemo } from "react";
 
-const projectStatus: Record<string, { label: string; color: string; icon: React.ReactNode }> = {
+const projectStatus: Record<string, { key: string; color: string; icon: React.ReactNode }> = {
   rizen: {
-    label: "Active Development",
+    key: "active",
     color: "bg-success-muted text-success",
     icon: <Construction size={14} />,
   },
   tripmate: {
-    label: "Planning",
+    key: "planning",
     color: "bg-accent-muted text-accent-foreground",
     icon: <FlaskConical size={14} />,
   },
   "social-media-app": {
-    label: "Graduation Project",
+    key: "graduationProject",
     color: "bg-primary-muted text-primary",
     icon: <GraduationCap size={14} />,
   },
 };
 
 export function FeaturedProjects() {
-  const { locale } = useLocale();
+  const { locale, dir } = useLocale();
   const { projects } = useContent();
   const content = getSiteContent(locale).featuredProjects;
+  const ui = getSiteContent(locale).ui;
   const featured = useMemo(
     () => projects.filter((p) => p.featured).slice(0, 2),
     [projects]
@@ -91,7 +92,7 @@ export function FeaturedProjects() {
                     {status && (
                       <div className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${status.color} mb-4`}>
                         {status.icon}
-                        {status.label}
+                        {ui.projectStatus[status.key as keyof typeof ui.projectStatus]}
                       </div>
                     )}
 
@@ -122,8 +123,8 @@ export function FeaturedProjects() {
                     <div className="flex items-center gap-3 text-sm text-muted-foreground pt-4 border-t border-border mt-auto">
                       <span className="flex items-center gap-1 text-primary font-medium text-xs">
                         <BookOpen size={12} />
-                        Case Study
-                        <ArrowRight size={12} />
+                        {ui.caseStudy}
+                        {dir === "rtl" ? <ArrowLeft size={12} /> : <ArrowRight size={12} />}
                       </span>
                     </div>
                   </div>
@@ -148,7 +149,7 @@ export function FeaturedProjects() {
                   {projectStatus[graduation.slug] && (
                     <div className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${projectStatus[graduation.slug].color} mb-3`}>
                       {projectStatus[graduation.slug].icon}
-                      {projectStatus[graduation.slug].label}
+                      {ui.projectStatus[projectStatus[graduation.slug].key as keyof typeof ui.projectStatus]}
                     </div>
                   )}
 
@@ -170,8 +171,8 @@ export function FeaturedProjects() {
 
                   <div className="flex items-center gap-1 text-primary text-xs font-medium pt-3 border-t border-border">
                     <BookOpen size={11} />
-                    Case Study
-                    <ArrowRight size={11} />
+                    {ui.caseStudy}
+                    {dir === "rtl" ? <ArrowLeft size={11} /> : <ArrowRight size={11} />}
                   </div>
                 </div>
               </Link>
@@ -188,7 +189,7 @@ export function FeaturedProjects() {
         >
           <Button as="a" href="/projects" variant="outline" size="lg">
             {content.viewAll}
-            <ArrowRight size={16} />
+            {dir === "rtl" ? <ArrowLeft size={16} /> : <ArrowRight size={16} />}
           </Button>
         </motion.div>
       </Container>

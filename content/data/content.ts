@@ -130,6 +130,122 @@ export type SiteContent = {
     description: string;
     backLink: string;
   };
+  ui: {
+    projectStatus: {
+      active: string;
+      paused: string;
+      planning: string;
+      graduationProject: string;
+    };
+    caseStudySections: {
+      problem: string;
+      solution: string;
+      architecture: string;
+      keyFeatures: string;
+      challenges: string;
+      decisions: string;
+      results: string;
+      lessons: string;
+      timeline: string;
+    };
+    learningCardTitles: {
+      currentlyLearning: string;
+      improving: string;
+      exploreNext: string;
+    };
+    viewCredential: string;
+    scroll: string;
+    levelLabels: {
+      proficient: string;
+      intermediate: string;
+      developing: string;
+      learning: string;
+      exploring: string;
+    };
+    projectNav: {
+      previous: string;
+      next: string;
+      backToAll: string;
+      backChevron: string;
+    };
+    caseStudy: string;
+    projectCard: {
+      featured: string;
+      readCaseStudy: string;
+      code: string;
+      live: string;
+    };
+    aria: {
+      mainNav: string;
+      projectNavigation: string;
+    };
+  };
+  admin: {
+    title: string;
+    brand: string;
+    loading: string;
+    sidebar: {
+      dashboard: string;
+      identity: string;
+      workingOn: string;
+      projects: string;
+      skills: string;
+      knowledgeBase: string;
+      experience: string;
+      education: string;
+      certifications: string;
+      courses: string;
+      learning: string;
+      timeline: string;
+      socialLinks: string;
+      media: string;
+      resume: string;
+      publicSite: string;
+      signOut: string;
+    };
+    mobileNav: {
+      dashboard: string;
+      identity: string;
+      projects: string;
+      site: string;
+      signOut: string;
+    };
+    dashboard: {
+      heading: string;
+      welcomeBack: string;
+      published: string;
+      lastModified: string;
+      lastPublishedBy: string;
+      adminLabel: string;
+      never: string;
+      contentOverview: string;
+      publishAll: string;
+      quickActions: string;
+      editIdentity: string;
+      manageProjects: string;
+      uploadMedia: string;
+      viewPublicSite: string;
+      contentItems: {
+        identity: string;
+        projects: string;
+        workingOn: string;
+        skills: string;
+        knowledgeBase: string;
+        certifications: string;
+        timeline: string;
+        media: string;
+      };
+    };
+    login: {
+      heading: string;
+      description: string;
+      email: string;
+      password: string;
+      signingIn: string;
+      signIn: string;
+      authFailed: string;
+    };
+  };
 };
 
 export type WorkingItem = {
@@ -348,6 +464,122 @@ const en: SiteContent = {
     description: "The project you're looking for doesn't exist or has been removed.",
     backLink: "← All projects",
   },
+  ui: {
+    projectStatus: {
+      active: "Active Development",
+      paused: "Paused",
+      planning: "Planning",
+      graduationProject: "Graduation Project",
+    },
+    caseStudySections: {
+      problem: "Problem",
+      solution: "Solution",
+      architecture: "Architecture",
+      keyFeatures: "Key Features",
+      challenges: "Engineering Challenges",
+      decisions: "Decisions & Tradeoffs",
+      results: "Results",
+      lessons: "Lessons Learned",
+      timeline: "Timeline",
+    },
+    learningCardTitles: {
+      currentlyLearning: "Currently Learning",
+      improving: "Improving",
+      exploreNext: "Explore Next",
+    },
+    viewCredential: "View credential",
+    scroll: "Scroll",
+    levelLabels: {
+      proficient: "Proficient",
+      intermediate: "Intermediate",
+      developing: "Developing",
+      learning: "Learning",
+      exploring: "Exploring",
+    },
+    projectNav: {
+      previous: "Previous",
+      next: "Next",
+      backToAll: "All projects",
+      backChevron: "← Back to projects",
+    },
+    caseStudy: "Case Study",
+    projectCard: {
+      featured: "Featured",
+      readCaseStudy: "Read case study",
+      code: "Code",
+      live: "Live",
+    },
+    aria: {
+      mainNav: "Main navigation",
+      projectNavigation: "Project navigation",
+    },
+  },
+  admin: {
+    title: "Admin — Portfolio CMS",
+    brand: "Portfolio CMS",
+    loading: "Loading...",
+    sidebar: {
+      dashboard: "Dashboard",
+      identity: "Identity",
+      workingOn: "Working On",
+      projects: "Projects",
+      skills: "Skills",
+      knowledgeBase: "Knowledge Base",
+      experience: "Experience",
+      education: "Education",
+      certifications: "Certifications",
+      courses: "Courses",
+      learning: "Learning",
+      timeline: "Timeline",
+      socialLinks: "Social Links",
+      media: "Media",
+      resume: "Resume",
+      publicSite: "Public Site",
+      signOut: "Sign Out",
+    },
+    mobileNav: {
+      dashboard: "Dashboard",
+      identity: "Identity",
+      projects: "Projects",
+      site: "Site",
+      signOut: "Sign Out",
+    },
+    dashboard: {
+      heading: "Dashboard",
+      welcomeBack: "Welcome back, ",
+      published: "Published",
+      lastModified: "Last Modified",
+      lastPublishedBy: "Last Published By",
+      adminLabel: "Admin",
+      never: "Never",
+      contentOverview: "Content Overview",
+      publishAll: "Publish All",
+      quickActions: "Quick Actions",
+      editIdentity: "Edit Identity",
+      manageProjects: "Manage Projects",
+      uploadMedia: "Upload Media",
+      viewPublicSite: "View Public Site",
+      contentItems: {
+        identity: "Identity",
+        projects: "Projects",
+        workingOn: "Working On",
+        skills: "Skills",
+        knowledgeBase: "Knowledge Base",
+        certifications: "Certifications",
+        timeline: "Timeline",
+        media: "Media",
+      },
+    },
+    login: {
+      heading: "Portfolio CMS",
+      description: "Sign in to manage your portfolio content.",
+      email: "Email",
+      password: "Password",
+      signingIn: "Signing in...",
+      signIn: "Sign In",
+      authFailed: "Authentication failed",
+    },
+  },
 };
 
 const ar: SiteContent = {
@@ -543,5 +775,121 @@ const ar: SiteContent = {
     title: "المشروع غير موجود",
     description: "المشروع الذي تبحث عنه غير موجود أو تمت إزالته.",
     backLink: "← جميع المشاريع",
+  },
+  ui: {
+    projectStatus: {
+      active: "قيد التطوير",
+      paused: "متوقف",
+      planning: "تخطيط",
+      graduationProject: "مشروع تخرج",
+    },
+    caseStudySections: {
+      problem: "المشكلة",
+      solution: "الحل",
+      architecture: "الهندسة المعمارية",
+      keyFeatures: "الميزات الرئيسية",
+      challenges: "التحديات الهندسية",
+      decisions: "القرارات والمقايضات",
+      results: "النتائج",
+      lessons: "الدروس المستفادة",
+      timeline: "الجدول الزمني",
+    },
+    learningCardTitles: {
+      currentlyLearning: "أتعلم حالياً",
+      improving: "أطور نفسي",
+      exploreNext: "استكشف بعد ذلك",
+    },
+    viewCredential: "عرض الشهادة",
+    scroll: "تمرير",
+    levelLabels: {
+      proficient: "متمكن",
+      intermediate: "متوسط",
+      developing: "قيد التطوير",
+      learning: "يتعلم",
+      exploring: "يستكشف",
+    },
+    projectNav: {
+      previous: "السابق",
+      next: "التالي",
+      backToAll: "جميع المشاريع",
+      backChevron: "→ العودة إلى المشاريع",
+    },
+    caseStudy: "دراسة حالة",
+    projectCard: {
+      featured: "مميز",
+      readCaseStudy: "اقرأ دراسة الحالة",
+      code: "الكود",
+      live: "مباشر",
+    },
+    aria: {
+      mainNav: "التنقل الرئيسي",
+      projectNavigation: "التنقل بين المشاريع",
+    },
+  },
+  admin: {
+    title: "لوحة التحكم — Portfolio CMS",
+    brand: "Portfolio CMS",
+    loading: "جارٍ التحميل...",
+    sidebar: {
+      dashboard: "لوحة التحكم",
+      identity: "الهوية",
+      workingOn: "قيد العمل",
+      projects: "المشاريع",
+      skills: "المهارات",
+      knowledgeBase: "قاعدة المعرفة",
+      experience: "الخبرات",
+      education: "التعليم",
+      certifications: "الشهادات",
+      courses: "الدورات",
+      learning: "التعلم",
+      timeline: "الجدول الزمني",
+      socialLinks: "روابط التواصل",
+      media: "الوسائط",
+      resume: "السيرة الذاتية",
+      publicSite: "الموقع العام",
+      signOut: "تسجيل الخروج",
+    },
+    mobileNav: {
+      dashboard: "لوحة التحكم",
+      identity: "الهوية",
+      projects: "المشاريع",
+      site: "الموقع",
+      signOut: "تسجيل الخروج",
+    },
+    dashboard: {
+      heading: "لوحة التحكم",
+      welcomeBack: "مرحباً بعودتك، ",
+      published: "تاريخ النشر",
+      lastModified: "آخر تعديل",
+      lastPublishedBy: "آخر نشر بواسطة",
+      adminLabel: "المسؤول",
+      never: "أبداً",
+      contentOverview: "نظرة عامة على المحتوى",
+      publishAll: "نشر الكل",
+      quickActions: "إجراءات سريعة",
+      editIdentity: "تعديل الهوية",
+      manageProjects: "إدارة المشاريع",
+      uploadMedia: "رفع الوسائط",
+      viewPublicSite: "عرض الموقع العام",
+      contentItems: {
+        identity: "الهوية",
+        projects: "المشاريع",
+        workingOn: "قيد العمل",
+        skills: "المهارات",
+        knowledgeBase: "قاعدة المعرفة",
+        certifications: "الشهادات",
+        timeline: "الجدول الزمني",
+        media: "الوسائط",
+      },
+    },
+    login: {
+      heading: "Portfolio CMS",
+      description: "سجل الدخول لإدارة محتوى ملف أعمالك.",
+      email: "البريد الإلكتروني",
+      password: "كلمة المرور",
+      signingIn: "جارٍ تسجيل الدخول...",
+      signIn: "تسجيل الدخول",
+      authFailed: "فشل المصادقة",
+    },
   },
 };

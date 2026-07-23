@@ -52,7 +52,7 @@ export default function AdminIdentityPage() {
   useEffect(() => {
     async function load() {
       try {
-        const { db } = getFirebaseClient()
+        const { db } = await getFirebaseClient()
         const docSnap = await getDoc(doc(db, "identity", "main"))
         if (docSnap.exists()) {
           setData({ ...defaultIdentity, ...docSnap.data() } as IdentityData)
@@ -66,7 +66,7 @@ export default function AdminIdentityPage() {
   const handleSave = async () => {
     setSaving(true)
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       await setDoc(doc(db, "identity", "main"), { ...data, lastModified: new Date() })
     } catch {}
     setSaving(false)

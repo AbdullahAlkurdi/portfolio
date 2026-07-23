@@ -12,6 +12,7 @@ import {
   ChevronDown,
   ExternalLink,
   ArrowRight,
+  ArrowLeft,
 } from "lucide-react";
 
 const stagger = {
@@ -28,7 +29,7 @@ const fadeUp = {
 };
 
 export function HeroSection() {
-  const { locale } = useLocale();
+  const { locale, dir } = useLocale();
   const content = getSiteContent(locale).hero;
 
   return (
@@ -108,7 +109,7 @@ export function HeroSection() {
           <motion.div variants={fadeUp} className="flex flex-wrap gap-3 mb-8">
             <Button as="a" href="#projects" size="lg">
               {content.primaryCta}
-              <ArrowRight size={16} />
+              {dir === "rtl" ? <ArrowLeft size={16} /> : <ArrowRight size={16} />}
             </Button>
             <Button
               as="a"
@@ -116,7 +117,7 @@ export function HeroSection() {
               variant="outline"
               size="lg"
             >
-              <FileText size={16} />
+              <FileText size={16} className={locale === "ar" ? "ml-2" : "mr-2"} />
               {content.secondaryCta}
             </Button>
             <Button
@@ -139,10 +140,10 @@ export function HeroSection() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="GitHub Profile"
+              aria-label={locale === "ar" ? "ملف GitHub" : "GitHub Profile"}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-              <span className="hidden sm:inline">GitHub</span>
+              <span className="hidden sm:inline">{locale === "ar" ? "GitHub" : "GitHub"}</span>
             </a>
             <span className="text-muted-foreground/30">/</span>
             <a
@@ -150,10 +151,10 @@ export function HeroSection() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="LinkedIn Profile"
+              aria-label={locale === "ar" ? "ملف LinkedIn" : "LinkedIn Profile"}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-              <span className="hidden sm:inline">LinkedIn</span>
+              <span className="hidden sm:inline">{locale === "ar" ? "LinkedIn" : "LinkedIn"}</span>
             </a>
             <span className="text-muted-foreground/30">/</span>
             <a
@@ -161,10 +162,10 @@ export function HeroSection() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="WhatsApp"
+              aria-label={locale === "ar" ? "واتساب" : "WhatsApp"}
             >
               <ExternalLink size={18} />
-              <span className="hidden sm:inline">WhatsApp</span>
+              <span className="hidden sm:inline">{locale === "ar" ? "واتساب" : "WhatsApp"}</span>
             </a>
           </motion.div>
         </motion.div>
@@ -178,9 +179,9 @@ export function HeroSection() {
           <a
             href="#who-i-am"
             className="flex flex-col items-center gap-1 text-muted-foreground/40 hover:text-muted-foreground transition-colors"
-            aria-label="Scroll down"
+            aria-label={locale === "ar" ? "تمرير للأسفل" : "Scroll down"}
           >
-            <span className="text-[10px] tracking-widest uppercase">Scroll</span>
+            <span className="text-[10px] tracking-widest uppercase">{getSiteContent(locale).ui.scroll}</span>
             <ChevronDown size={14} className="animate-bounce" />
           </a>
         </motion.div>

@@ -7,6 +7,7 @@ import { Section } from "@/components/layout/section";
 import { Heading } from "@/components/ui/typography/heading";
 import { Body } from "@/components/ui/typography/body";
 import { Badge } from "@/components/ui/badge";
+import { useLocale } from "@/lib/locale-context";
 import { timelineData, timelineSection } from "@/content/data/timeline";
 import {
   staggerContainer,
@@ -72,6 +73,7 @@ function TimelineDesktop() {
 }
 
 function TimelineMobile() {
+  const { dir } = useLocale();
   return (
     <motion.div
       className="relative space-y-0 md:hidden"
@@ -81,17 +83,17 @@ function TimelineMobile() {
       viewport={{ once: true, margin: "-40px" }}
     >
       <div
-        className="absolute left-4 top-0 h-full w-0.5 bg-border"
+        className={`absolute ${dir === "rtl" ? "right-4" : "left-4"} top-0 h-full w-0.5 bg-border`}
         aria-hidden="true"
       />
       {timelineData.map((event) => (
         <motion.div
           key={event.year}
           variants={staggerItem}
-          className="relative ml-10 pb-8 pl-6"
+          className={`relative ${dir === "rtl" ? "mr-10 pr-6" : "ml-10 pl-6"} pb-8`}
         >
           <div
-            className="absolute left-[-22px] top-1 flex h-3 w-3 items-center justify-center"
+            className={`absolute ${dir === "rtl" ? "right-[-22px]" : "left-[-22px]"} top-1 flex h-3 w-3 items-center justify-center`}
             aria-hidden="true"
           >
             <div className="h-2 w-2 rounded-full bg-primary" />

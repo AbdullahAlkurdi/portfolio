@@ -1,3 +1,4 @@
+import { useLocale } from "@/lib/locale-context";
 import { Heading } from "@/components/ui/typography/heading";
 import { Body } from "@/components/ui/typography/body";
 import { resumeData } from "@/content/data/resume";
@@ -18,7 +19,35 @@ const contactIcons: Record<string, React.ReactNode> = {
   WhatsApp: <MessageSquare size={14} aria-hidden="true" />,
 };
 
+const contactLabels: Record<string, Record<string, string>> = {
+  en: {
+    Email: "Email",
+    Phone: "Phone",
+    GitHub: "GitHub",
+    LinkedIn: "LinkedIn",
+    Portfolio: "Portfolio",
+    Linktree: "Linktree",
+    Instagram: "Instagram",
+    Facebook: "Facebook",
+    Telegram: "Telegram",
+    WhatsApp: "WhatsApp",
+  },
+  ar: {
+    Email: "البريد الإلكتروني",
+    Phone: "الهاتف",
+    GitHub: "GitHub",
+    LinkedIn: "LinkedIn",
+    Portfolio: "ملف الأعمال",
+    Linktree: "Linktree",
+    Instagram: "إنستغرام",
+    Facebook: "فيسبوك",
+    Telegram: "تيليغرام",
+    WhatsApp: "واتساب",
+  },
+};
+
 export function ResumeHeader() {
+  const { locale } = useLocale();
   return (
     <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
       <div className="space-y-3">
@@ -38,7 +67,7 @@ export function ResumeHeader() {
               className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               {contactIcons[link.label]}
-              {link.label}
+              {contactLabels[locale][link.label] ?? link.label}
             </a>
           ))}
         </nav>

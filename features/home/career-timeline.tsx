@@ -18,7 +18,7 @@ const milestoneColors = [
 ];
 
 export function CareerTimeline() {
-  const { locale } = useLocale();
+  const { locale, dir } = useLocale();
   const content = getSiteContent(locale).timeline;
 
   return (
@@ -42,7 +42,7 @@ export function CareerTimeline() {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute left-[18px] md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/20 via-primary/40 to-primary/20" aria-hidden="true" />
+          <div className={`absolute ${dir === "rtl" ? "right-[18px] md:right-1/2" : "left-[18px] md:left-1/2"} md:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/20 via-primary/40 to-primary/20`} aria-hidden="true" />
 
           <div className="space-y-10">
             {content.events.map((event, i) => {
@@ -56,9 +56,9 @@ export function CareerTimeline() {
                   transition={{ delay: i * 0.08, duration: 0.5 }}
                   className="relative flex items-start gap-6 md:gap-0"
                 >
-                  <div className="hidden md:flex flex-1 justify-end">
+                  <div className={`hidden md:flex flex-1 ${dir === "rtl" ? "justify-start" : "justify-end"}`}>
                     {isLeft && (
-                      <div className="w-full max-w-md pr-10 text-right">
+                      <div className={`w-full max-w-md ${dir === "rtl" ? "pl-10 text-left" : "pr-10 text-right"}`}>
                         <span className="inline-block text-xs font-bold text-primary mb-1.5 px-2 py-0.5 rounded-full bg-primary-muted">
                           {event.year}
                         </span>
@@ -70,13 +70,13 @@ export function CareerTimeline() {
                     )}
                   </div>
 
-                  <div className="relative z-10 flex-shrink-0 ml-0 md:ml-0 md:absolute md:left-1/2 md:-translate-x-1/2">
+                  <div className={`relative z-10 flex-shrink-0 ${dir === "rtl" ? "mr-0 md:mr-0 md:absolute md:right-1/2" : "ml-0 md:ml-0 md:absolute md:left-1/2"} md:-translate-x-1/2`}>
                     <div className={`w-9 h-9 rounded-full border-2 flex items-center justify-center bg-background ${milestoneColors[i] || milestoneColors[milestoneColors.length - 1]}`}>
                       <span className="text-[10px] font-bold text-primary">{event.year}</span>
                     </div>
                   </div>
 
-                  <div className="flex-1 min-w-0 md:hidden">
+                  <div className={`flex-1 min-w-0 md:hidden ${dir === "rtl" ? "text-right" : ""}`}>
                     <span className="inline-block text-xs font-bold text-primary mb-1">{event.year}</span>
                     <h3 className="text-base font-semibold mb-1">{event.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
@@ -84,9 +84,9 @@ export function CareerTimeline() {
                     </p>
                   </div>
 
-                  <div className="hidden md:flex flex-1">
+                  <div className={`hidden md:flex flex-1 ${dir === "rtl" ? "justify-end" : ""}`}>
                     {!isLeft && (
-                      <div className="w-full max-w-md pl-10">
+                      <div className={`w-full max-w-md ${dir === "rtl" ? "pr-10 text-right" : "pl-10"}`}>
                         <span className="inline-block text-xs font-bold text-primary mb-1.5 px-2 py-0.5 rounded-full bg-primary-muted">
                           {event.year}
                         </span>

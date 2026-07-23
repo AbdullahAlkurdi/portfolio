@@ -39,32 +39,39 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    let auth: ReturnType<typeof getFirebaseClient>["auth"] | null = null
-    try {
-      auth = getFirebaseClient().auth
-    } catch {
-      setLoading(false) // eslint-disable-line react-hooks/set-state-in-effect
-      return
+    let cancelled = false
+    async function init() {
+      try {
+        const { auth } = await getFirebaseClient()
+        if (cancelled) return
+        const unsubscribe = onAuthStateChanged(auth, (u) => {
+          setUser(u)
+          setLoading(false)
+        })
+        return unsubscribe
+      } catch {
+        if (!cancelled) setLoading(false)
+      }
     }
-    const unsubscribe = onAuthStateChanged(auth, (u) => {
-      setUser(u)
-      setLoading(false)
-    })
-    return unsubscribe
+    const unsubPromise = init()
+    return () => {
+      cancelled = true
+      unsubPromise.then((unsub) => unsub?.())
+    }
   }, [])
 
   const isAdmin = user !== null && ADMIN_EMAILS.includes(user.email ?? "")
 
   const signIn = useCallback(async (email: string, password: string) => {
     try {
-      const { auth } = getFirebaseClient()
+      const { auth } = await getFirebaseClient()
       await signInWithEmailAndPassword(auth, email, password)
     } catch {}
   }, [])
 
   const signOut = useCallback(async () => {
     try {
-      const { auth } = getFirebaseClient()
+      const { auth } = await getFirebaseClient()
       await firebaseSignOut(auth)
     } catch {}
   }, [])

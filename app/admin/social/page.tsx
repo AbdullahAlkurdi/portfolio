@@ -25,7 +25,7 @@ export default function AdminSocialPage() {
   useEffect(() => {
     async function load() {
       try {
-        const { db } = getFirebaseClient()
+        const { db } = await getFirebaseClient()
         const snapshot = await getDocs(collection(db, "social"))
         if (!snapshot.empty) {
           setItems(snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as SocialLink)))
@@ -40,7 +40,7 @@ export default function AdminSocialPage() {
   const handleAdd = async () => {
     if (!newLabel.trim() || !newHref.trim()) return
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       const docRef = await addDoc(collection(db, "social"), {
         label: newLabel,
         href: newHref,
@@ -55,7 +55,7 @@ export default function AdminSocialPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       await deleteDoc(doc(db, "social", id))
       setItems((prev) => prev.filter((i) => i.id !== id))
     } catch {}

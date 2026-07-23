@@ -14,6 +14,7 @@ export function CertificationsSection() {
   const { locale } = useLocale();
   const { resume } = useContent();
   const content = getSiteContent(locale).certifications;
+  const ui = getSiteContent(locale).ui;
   const certs = resume.certifications;
 
   if (certs.length === 0) return null;
@@ -60,7 +61,7 @@ export function CertificationsSection() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 text-xs text-primary mt-1 hover:underline"
                       >
-                        View credential
+                        {ui.viewCredential}
                         <ExternalLink size={10} />
                       </a>
                     )}

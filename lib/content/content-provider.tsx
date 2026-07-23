@@ -2,7 +2,6 @@
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
 import { getFirebaseClient } from "@/lib/firebase/config"
-import { collection, getDocs, doc, getDoc } from "firebase/firestore"
 import { projectsData as staticProjects } from "@/content/data/projects"
 import { resumeData as staticResume } from "@/content/data/resume"
 import { knowledgeDomains as staticKnowledge } from "@/content/data/knowledge-domains"
@@ -69,7 +68,10 @@ export function ContentProvider({ children }: { children: ReactNode }) {
 
     async function load() {
       try {
-        const { db } = getFirebaseClient()
+        const [{ db }, { collection, getDocs, doc, getDoc }] = await Promise.all([
+          getFirebaseClient(),
+          import("firebase/firestore"),
+        ])
 
         const merged: ContentData = {
           ...defaultContent,

@@ -25,7 +25,7 @@ export default function AdminLearningPage() {
   useEffect(() => {
     async function load() {
       try {
-        const { db } = getFirebaseClient()
+        const { db } = await getFirebaseClient()
         const snapshot = await getDocs(collection(db, "learning"))
         if (!snapshot.empty) {
           setItems(snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as LearningItem)))
@@ -38,7 +38,7 @@ export default function AdminLearningPage() {
   const handleAdd = async () => {
     if (!newTopic.trim()) return
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       const docRef = await addDoc(collection(db, "learning"), {
         topic: newTopic,
         reason: newReason,
@@ -55,7 +55,7 @@ export default function AdminLearningPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       await deleteDoc(doc(db, "learning", id))
       setItems((prev) => prev.filter((i) => i.id !== id))
     } catch {}

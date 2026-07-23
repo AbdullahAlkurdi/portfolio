@@ -29,7 +29,7 @@ export default function AdminProjectsPage() {
   useEffect(() => {
     async function load() {
       try {
-        const { db } = getFirebaseClient()
+        const { db } = await getFirebaseClient()
         const snapshot = await getDocs(collection(db, "projects"))
         const items = snapshot.docs.map((d) => ({
           id: d.id,
@@ -56,7 +56,7 @@ export default function AdminProjectsPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       await deleteDoc(doc(db, "projects", id))
       setProjects((prev) => prev.filter((p) => p.id !== id))
     } catch {}

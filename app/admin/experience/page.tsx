@@ -29,7 +29,7 @@ export default function AdminExperiencePage() {
   useEffect(() => {
     async function load() {
       try {
-        const { db } = getFirebaseClient()
+        const { db } = await getFirebaseClient()
         const snapshot = await getDocs(collection(db, "experience"))
         if (!snapshot.empty) {
           const list = snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as ExperienceItem))
@@ -58,7 +58,7 @@ export default function AdminExperiencePage() {
   const handleAdd = async () => {
     if (!newRole.trim() || !newOrg.trim()) return
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       const docRef = await addDoc(collection(db, "experience"), {
         role: newRole,
         organization: newOrg,
@@ -78,7 +78,7 @@ export default function AdminExperiencePage() {
 
   const handleDelete = async (id: string) => {
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       await deleteDoc(doc(db, "experience", id))
       setItems((prev) => prev.filter((i) => i.id !== id))
     } catch {}

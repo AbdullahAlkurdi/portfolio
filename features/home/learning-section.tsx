@@ -12,22 +12,23 @@ import { BookOpen, TrendingUp, Compass, Sparkles } from "lucide-react";
 export function LearningSection() {
   const { locale } = useLocale();
   const content = getSiteContent(locale).learning;
+  const ui = getSiteContent(locale).ui;
 
   const items = [
     {
       icon: <BookOpen size={20} />,
       label: content.currentlyLearning,
-      title: "Currently Learning",
+      title: ui.learningCardTitles.currentlyLearning,
     },
     {
       icon: <TrendingUp size={20} />,
       label: content.improving,
-      title: "Improving",
+      title: ui.learningCardTitles.improving,
     },
     {
       icon: <Compass size={20} />,
       label: content.exploreNext,
-      title: "Explore Next",
+      title: ui.learningCardTitles.exploreNext,
     },
   ];
 

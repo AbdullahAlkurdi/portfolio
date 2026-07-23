@@ -1,8 +1,10 @@
 import { Badge } from "@/components/ui/badge";
 import { Body } from "@/components/ui/typography/body";
+import { useLocale } from "@/lib/locale-context";
 import { resumeData } from "@/content/data/resume";
 
 export function ResumeExperience() {
+  const { dir } = useLocale();
   if (resumeData.experience.length === 0) return null;
 
   return (
@@ -22,7 +24,7 @@ export function ResumeExperience() {
           </div>
           <Body size="sm" className="mt-2">{exp.description}</Body>
           {exp.achievements.length > 0 && (
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
+            <ul className={`mt-2 list-disc space-y-1 ${dir === "rtl" ? "pr-5" : "pl-5"} text-sm text-muted-foreground`}>
               {exp.achievements.map((a, j) => (
                 <li key={j}>{a}</li>
               ))}

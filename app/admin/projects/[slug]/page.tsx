@@ -66,7 +66,7 @@ export default function AdminEditProjectPage({
     async function load() {
       const slug = params.slug
       try {
-        const { db } = getFirebaseClient()
+        const { db } = await getFirebaseClient()
         const docSnap = await getDoc(doc(db, "projects", slug))
         if (docSnap.exists()) {
           const data = docSnap.data() as ProjectForm
@@ -112,7 +112,7 @@ export default function AdminEditProjectPage({
     setSaving(true)
     try {
       const slug = params.slug
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       await setDoc(doc(db, "projects", slug), {
         ...form,
         tags: form.tags.split(",").map((t) => t.trim()).filter(Boolean),

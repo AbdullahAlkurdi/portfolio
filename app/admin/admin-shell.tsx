@@ -5,9 +5,13 @@ import { AdminSidebar } from "@/features/admin/sidebar"
 import { AdminMobileNav } from "@/features/admin/mobile-nav"
 import { useAdminAuth } from "@/lib/firebase/auth"
 import { useEffect, useMemo } from "react"
+import { useLocale } from "@/lib/locale-context"
+import { getSiteContent } from "@/content/data/content"
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
   const { user, loading, isAdmin, signOut } = useAdminAuth()
+  const { locale } = useLocale()
+  const adminContent = getSiteContent(locale).admin
   const router = useRouter()
   const pathname = usePathname()
   const isLoginPage = useMemo(() => pathname === "/admin/login", [pathname])
@@ -23,7 +27,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-3">
           <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-          <p className="text-sm text-muted-foreground">Loading...</p>
+          <p className="text-sm text-muted-foreground">{adminContent.loading}</p>
         </div>
       </div>
     )
@@ -40,7 +44,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen bg-background">
       <AdminSidebar onSignOut={signOut} />
       <AdminMobileNav onSignOut={signOut} />
-      <div className="lg:pl-60">
+      <div className={locale === "ar" ? "lg:pr-60" : "lg:pl-60"}>
         <main className="min-h-screen pb-20 lg:pb-0">{children}</main>
       </div>
     </div>

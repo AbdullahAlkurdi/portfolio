@@ -57,7 +57,7 @@ export function DesktopNav() {
     <header className="sticky top-0 z-50 hidden border-b border-border bg-background/80 backdrop-blur-lg md:block">
       <nav
         className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8"
-        aria-label="Main navigation"
+        aria-label={content.ui.aria.mainNav}
         dir={locale === "ar" ? "rtl" : "ltr"}
       >
         <Link href="/" className="text-lg font-semibold tracking-tight hover:text-primary transition-colors">

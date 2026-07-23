@@ -26,7 +26,7 @@ export default function AdminCoursesPage() {
   useEffect(() => {
     async function load() {
       try {
-        const { db } = getFirebaseClient()
+        const { db } = await getFirebaseClient()
         const snapshot = await getDocs(collection(db, "courses"))
         if (!snapshot.empty) {
           const list = snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as CourseItem))
@@ -52,7 +52,7 @@ export default function AdminCoursesPage() {
   const handleAdd = async () => {
     if (!newName.trim()) return
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       const docRef = await addDoc(collection(db, "courses"), {
         name: newName,
         issuer: newIssuer,
@@ -69,7 +69,7 @@ export default function AdminCoursesPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       await deleteDoc(doc(db, "courses", id))
       setItems((prev) => prev.filter((i) => i.id !== id))
     } catch {}

@@ -29,7 +29,7 @@ export default function AdminMediaPage() {
   useEffect(() => {
     async function load() {
       try {
-        const { db } = getFirebaseClient()
+        const { db } = await getFirebaseClient()
         const snapshot = await getDocs(collection(db, "media"))
         setItems(
           snapshot.docs
@@ -66,7 +66,7 @@ export default function AdminMediaPage() {
       }
       const data = await res.json()
 
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       const docRef = await addDoc(collection(db, "media"), {
         name: file.name,
         driveFileId: data.file.driveFileId,
@@ -109,7 +109,7 @@ export default function AdminMediaPage() {
         const err = await res.json()
         throw new Error(err.error ?? "Delete failed")
       }
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       await deleteDoc(doc(db, "media", item.id))
       setItems((prev) => prev.filter((i) => i.id !== item.id))
     } catch {}

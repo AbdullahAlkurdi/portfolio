@@ -31,7 +31,7 @@ export default function AdminWorkingPage() {
   useEffect(() => {
     async function load() {
       try {
-        const { db } = getFirebaseClient()
+        const { db } = await getFirebaseClient()
         const snapshot = await getDocs(collection(db, "working"))
         const list = snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as WorkingItem))
         setItems(list.sort((a, b) => a.order - b.order))
@@ -44,7 +44,7 @@ export default function AdminWorkingPage() {
   const handleAdd = async () => {
     if (!newName.trim()) return
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       const docRef = await addDoc(collection(db, "working"), {
         name: newName,
         description: newDescription,
@@ -79,7 +79,7 @@ export default function AdminWorkingPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       await deleteDoc(doc(db, "working", id))
       setItems((prev) => prev.filter((i) => i.id !== id))
     } catch {}
@@ -87,7 +87,7 @@ export default function AdminWorkingPage() {
 
   const handleToggle = async (id: string, published: boolean) => {
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       await updateDoc(doc(db, "working", id), { published })
       setItems((prev) => prev.map((i) => (i.id === id ? { ...i, published } : i)))
     } catch {}

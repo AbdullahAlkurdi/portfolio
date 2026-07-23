@@ -4,12 +4,14 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { LayoutDashboard, User, FolderKanban, LogOut, Globe } from "lucide-react"
+import { useLocale } from "@/lib/locale-context"
+import { getSiteContent } from "@/content/data/content"
 
 const navItems = [
-  { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
-  { label: "Identity", href: "/admin/identity", icon: User },
-  { label: "Projects", href: "/admin/projects", icon: FolderKanban },
-  { label: "Site", href: "/", icon: Globe },
+  { key: "dashboard", href: "/admin", icon: LayoutDashboard },
+  { key: "identity", href: "/admin/identity", icon: User },
+  { key: "projects", href: "/admin/projects", icon: FolderKanban },
+  { key: "site", href: "/", icon: Globe },
 ]
 
 type AdminMobileNavProps = {
@@ -17,6 +19,8 @@ type AdminMobileNavProps = {
 }
 
 export function AdminMobileNav({ onSignOut }: AdminMobileNavProps) {
+  const { locale } = useLocale()
+  const adminContent = getSiteContent(locale).admin
   const pathname = usePathname()
 
   return (
@@ -35,7 +39,7 @@ export function AdminMobileNav({ onSignOut }: AdminMobileNavProps) {
               )}
             >
               <Icon size={16} />
-              {item.label}
+              {adminContent.mobileNav[item.key as keyof typeof adminContent.mobileNav]}
             </Link>
           )
         })}
@@ -44,7 +48,7 @@ export function AdminMobileNav({ onSignOut }: AdminMobileNavProps) {
           className="flex flex-col items-center gap-0.5 rounded-md px-3 py-1 text-xs font-medium text-muted-foreground"
         >
           <LogOut size={16} />
-          Sign Out
+          {adminContent.mobileNav.signOut}
         </button>
       </div>
     </nav>

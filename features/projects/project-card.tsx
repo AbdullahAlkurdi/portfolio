@@ -5,8 +5,9 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Body } from "@/components/ui/typography/body";
 import { fadeInUp } from "@/lib/animations/variants";
-import { projectsUi } from "@/content/data/projects-ui";
-import { ArrowRight, ExternalLink, Code2 } from "lucide-react";
+import { useLocale } from "@/lib/locale-context";
+import { getSiteContent } from "@/content/data/content";
+import { ArrowRight, ArrowLeft, ExternalLink, Code2 } from "lucide-react";
 import type { ProjectFrontmatter } from "@/types/content";
 
 type ProjectCardProps = {
@@ -15,6 +16,7 @@ type ProjectCardProps = {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const prefersReduced = useReducedMotion();
+  const { locale, dir } = useLocale();
 
   return (
     <motion.article
@@ -29,8 +31,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
         className="block rounded-xl border border-border bg-surface p-6 transition-colors hover:border-primary/30 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       >
         {project.featured && (
-          <Badge variant="primary" className="absolute -top-2.5 -right-2.5">
-            {projectsUi.card.featured}
+          <Badge variant="primary" className={`absolute -top-2.5 ${dir === "rtl" ? "-left-2.5" : "-right-2.5"}`}>
+            {getSiteContent(locale).ui.projectCard.featured}
           </Badge>
         )}
 
@@ -60,18 +62,18 @@ export function ProjectCard({ project }: ProjectCardProps) {
           {project.github && (
             <span className="flex items-center gap-1 group-hover:text-foreground transition-colors">
               <Code2 size={14} />
-              {projectsUi.card.code}
+              {getSiteContent(locale).ui.projectCard.code}
             </span>
           )}
           {project.demo && (
             <span className="flex items-center gap-1 group-hover:text-foreground transition-colors">
               <ExternalLink size={14} />
-              {projectsUi.card.live}
+              {getSiteContent(locale).ui.projectCard.live}
             </span>
           )}
-          <span className="ml-auto flex items-center gap-1 text-primary">
-            {projectsUi.card.readCaseStudy}
-            <ArrowRight size={14} />
+          <span className={`${dir === "rtl" ? "mr-auto" : "ml-auto"} flex items-center gap-1 text-primary`}>
+            {getSiteContent(locale).ui.projectCard.readCaseStudy}
+            {dir === "rtl" ? <ArrowLeft size={14} /> : <ArrowRight size={14} />}
           </span>
         </div>
       </Link>

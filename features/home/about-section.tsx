@@ -22,7 +22,7 @@ export function AboutSection() {
           className="max-w-3xl mx-auto"
         >
           <Badge variant="primary" className="mb-4">
-            About
+            {getSiteContent(locale).about.title}
           </Badge>
           <h2 className="text-3xl font-bold tracking-tight mb-6 sm:text-4xl">
             {content.title}

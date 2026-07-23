@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useAdminAuth } from "@/lib/firebase/auth"
+import { useLocale } from "@/lib/locale-context"
+import { getSiteContent } from "@/content/data/content"
 import {
   User,
   FolderKanban,
@@ -21,7 +23,7 @@ type PublishStatus = {
 }
 
 type ContentItem = {
-  label: string
+  key: string
   href: string
   icon: React.ReactNode
   status: "complete" | "incomplete" | "pending"
@@ -29,6 +31,9 @@ type ContentItem = {
 
 export default function AdminDashboard() {
   const { user } = useAdminAuth()
+  const { locale } = useLocale()
+  const adminContent = getSiteContent(locale).admin
+  const dash = adminContent.dashboard
   const [publishStatus, setPublishStatus] = useState<PublishStatus | null>(null)
 
   useEffect(() => {
@@ -39,14 +44,14 @@ export default function AdminDashboard() {
   }, [])
 
   const contentItems: ContentItem[] = [
-    { label: "Identity", href: "/admin/identity", icon: <User size={18} />, status: "incomplete" },
-    { label: "Projects", href: "/admin/projects", icon: <FolderKanban size={18} />, status: "incomplete" },
-    { label: "Working On", href: "/admin/working", icon: <Briefcase size={18} />, status: "incomplete" },
-    { label: "Skills", href: "/admin/skills", icon: <Wrench size={18} />, status: "incomplete" },
-    { label: "Knowledge Base", href: "/admin/knowledge", icon: <BookOpen size={18} />, status: "incomplete" },
-    { label: "Certifications", href: "/admin/certifications", icon: <Award size={18} />, status: "incomplete" },
-    { label: "Timeline", href: "/admin/timeline", icon: <CalendarDays size={18} />, status: "incomplete" },
-    { label: "Media", href: "/admin/media", icon: <ImageIcon size={18} />, status: "incomplete" },
+    { key: "identity", href: "/admin/identity", icon: <User size={18} />, status: "incomplete" },
+    { key: "projects", href: "/admin/projects", icon: <FolderKanban size={18} />, status: "incomplete" },
+    { key: "workingOn", href: "/admin/working", icon: <Briefcase size={18} />, status: "incomplete" },
+    { key: "skills", href: "/admin/skills", icon: <Wrench size={18} />, status: "incomplete" },
+    { key: "knowledgeBase", href: "/admin/knowledge", icon: <BookOpen size={18} />, status: "incomplete" },
+    { key: "certifications", href: "/admin/certifications", icon: <Award size={18} />, status: "incomplete" },
+    { key: "timeline", href: "/admin/timeline", icon: <CalendarDays size={18} />, status: "incomplete" },
+    { key: "media", href: "/admin/media", icon: <ImageIcon size={18} />, status: "incomplete" },
   ]
 
   const handlePublish = async () => {
@@ -62,49 +67,49 @@ export default function AdminDashboard() {
   return (
     <div className="p-6">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
+        <h1 className="text-2xl font-bold tracking-tight">{dash.heading}</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Welcome back, {user?.email}
+          {dash.welcomeBack} {user?.email}
         </p>
       </div>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-xl border border-border bg-surface p-4">
-          <p className="text-xs text-muted-foreground">Published</p>
+          <p className="text-xs text-muted-foreground">{dash.published}</p>
           <p className="mt-1 text-lg font-semibold">
             {publishStatus?.publishedAt
               ? new Date(publishStatus.publishedAt).toLocaleDateString()
-              : "Never"}
+              : dash.never}
           </p>
         </div>
         <div className="rounded-xl border border-border bg-surface p-4">
-          <p className="text-xs text-muted-foreground">Last Modified</p>
+          <p className="text-xs text-muted-foreground">{dash.lastModified}</p>
           <p className="mt-1 text-lg font-semibold">
             {publishStatus?.lastModified
               ? new Date(publishStatus.lastModified).toLocaleDateString()
-              : "Never"}
+              : dash.never}
           </p>
         </div>
         <div className="rounded-xl border border-border bg-surface p-4">
-          <p className="text-xs text-muted-foreground">Last Published By</p>
+          <p className="text-xs text-muted-foreground">{dash.lastPublishedBy}</p>
           <p className="mt-1 text-lg font-semibold">
             {publishStatus?.publishedBy ?? "—"}
           </p>
         </div>
         <div className="rounded-xl border border-border bg-surface p-4">
-          <p className="text-xs text-muted-foreground">Admin</p>
+          <p className="text-xs text-muted-foreground">{dash.adminLabel}</p>
           <p className="mt-1 text-lg font-semibold">{user?.email}</p>
         </div>
       </div>
 
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">Content Overview</h2>
+          <h2 className="text-lg font-semibold">{dash.contentOverview}</h2>
           <button
             onClick={handlePublish}
             className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
           >
-            Publish All
+            {dash.publishAll}
           </button>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -115,32 +120,32 @@ export default function AdminDashboard() {
               className="flex items-center gap-3 rounded-xl border border-border bg-surface p-4 transition-colors hover:bg-muted"
             >
               <span className="text-primary">{item.icon}</span>
-              <span className="text-sm font-medium">{item.label}</span>
+              <span className="text-sm font-medium">{dash.contentItems[item.key as keyof typeof dash.contentItems]}</span>
             </Link>
           ))}
         </div>
       </div>
 
       <div className="rounded-xl border border-border bg-surface p-6">
-        <h2 className="text-lg font-semibold mb-2">Quick Actions</h2>
+        <h2 className="text-lg font-semibold mb-2">{dash.quickActions}</h2>
         <div className="flex flex-wrap gap-3">
           <Link
             href="/admin/identity"
             className="rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
           >
-            Edit Identity
+            {dash.editIdentity}
           </Link>
           <Link
             href="/admin/projects"
             className="rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
           >
-            Manage Projects
+            {dash.manageProjects}
           </Link>
           <Link
             href="/admin/media"
             className="rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
           >
-            Upload Media
+            {dash.uploadMedia}
           </Link>
           <a
             href="/"
@@ -148,7 +153,7 @@ export default function AdminDashboard() {
             rel="noopener noreferrer"
             className="rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
           >
-            View Public Site
+            {dash.viewPublicSite}
           </a>
         </div>
       </div>

@@ -26,7 +26,7 @@ export default function AdminKnowledgePage() {
   useEffect(() => {
     async function load() {
       try {
-        const { db } = getFirebaseClient()
+        const { db } = await getFirebaseClient()
         const snapshot = await getDocs(collection(db, "knowledge"))
         if (!snapshot.empty) {
           const list = snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as KnowledgeItem))
@@ -52,7 +52,7 @@ export default function AdminKnowledgePage() {
   const handleAdd = async () => {
     if (!newName.trim()) return
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       const docRef = await addDoc(collection(db, "knowledge"), {
         name: newName,
         level: newLevel,
@@ -68,7 +68,7 @@ export default function AdminKnowledgePage() {
 
   const handleDelete = async (id: string) => {
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       await deleteDoc(doc(db, "knowledge", id))
       setItems((prev) => prev.filter((i) => i.id !== id))
     } catch {}

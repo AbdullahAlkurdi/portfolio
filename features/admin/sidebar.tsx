@@ -3,6 +3,8 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { useLocale } from "@/lib/locale-context"
+import { getSiteContent } from "@/content/data/content"
 import {
   LayoutDashboard,
   User,
@@ -23,22 +25,22 @@ import {
 } from "lucide-react"
 
 const navItems = [
-  { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
-  { label: "Identity", href: "/admin/identity", icon: User },
-  { label: "Working On", href: "/admin/working", icon: Briefcase },
-  { label: "Projects", href: "/admin/projects", icon: FolderKanban },
-  { label: "Skills", href: "/admin/skills", icon: Wrench },
-  { label: "Knowledge Base", href: "/admin/knowledge", icon: BookOpen },
-  { label: "Experience", href: "/admin/experience", icon: Briefcase },
-  { label: "Education", href: "/admin/education", icon: School },
-  { label: "Certifications", href: "/admin/certifications", icon: Award },
-  { label: "Courses", href: "/admin/courses", icon: GraduationCap },
-  { label: "Learning", href: "/admin/learning", icon: BookMarked },
-  { label: "Timeline", href: "/admin/timeline", icon: CalendarDays },
-  { label: "Social Links", href: "/admin/social", icon: Share2 },
-  { label: "Media", href: "/admin/media", icon: Image },
-  { label: "Resume", href: "/resume", icon: FileText, external: true },
-  { label: "Public Site", href: "/", icon: Globe, external: true },
+  { key: "dashboard", href: "/admin", icon: LayoutDashboard },
+  { key: "identity", href: "/admin/identity", icon: User },
+  { key: "workingOn", href: "/admin/working", icon: Briefcase },
+  { key: "projects", href: "/admin/projects", icon: FolderKanban },
+  { key: "skills", href: "/admin/skills", icon: Wrench },
+  { key: "knowledgeBase", href: "/admin/knowledge", icon: BookOpen },
+  { key: "experience", href: "/admin/experience", icon: Briefcase },
+  { key: "education", href: "/admin/education", icon: School },
+  { key: "certifications", href: "/admin/certifications", icon: Award },
+  { key: "courses", href: "/admin/courses", icon: GraduationCap },
+  { key: "learning", href: "/admin/learning", icon: BookMarked },
+  { key: "timeline", href: "/admin/timeline", icon: CalendarDays },
+  { key: "socialLinks", href: "/admin/social", icon: Share2 },
+  { key: "media", href: "/admin/media", icon: Image },
+  { key: "resume", href: "/resume", icon: FileText, external: true },
+  { key: "publicSite", href: "/", icon: Globe, external: true },
 ]
 
 type AdminSidebarProps = {
@@ -47,15 +49,17 @@ type AdminSidebarProps = {
 
 export function AdminSidebar({ onSignOut }: AdminSidebarProps) {
   const pathname = usePathname()
+  const { locale } = useLocale()
+  const adminContent = getSiteContent(locale).admin
 
   return (
     <aside className="fixed inset-y-0 left-0 z-50 hidden w-60 flex-col border-r border-border bg-background lg:flex">
       <div className="flex h-14 items-center border-b border-border px-4">
         <Link href="/admin" className="text-sm font-semibold tracking-tight">
-          Portfolio CMS
+          {adminContent.brand}
         </Link>
       </div>
-      <nav className="flex-1 overflow-y-auto p-3 space-y-1" aria-label="Admin navigation">
+      <nav className="flex-1 overflow-y-auto p-3 space-y-1" aria-label={getSiteContent(locale).ui.aria.mainNav}>
         {navItems.map((item) => {
           const Icon = item.icon
           const isActive = item.href === "/admin"
@@ -76,7 +80,7 @@ export function AdminSidebar({ onSignOut }: AdminSidebarProps) {
               aria-current={isActive ? "page" : undefined}
             >
               <Icon size={16} />
-              {item.label}
+              {adminContent.sidebar[item.key as keyof typeof adminContent.sidebar]}
             </Link>
           )
         })}
@@ -87,7 +91,7 @@ export function AdminSidebar({ onSignOut }: AdminSidebarProps) {
           className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
         >
           <LogOut size={16} />
-          Sign Out
+          {adminContent.sidebar.signOut}
         </button>
       </div>
     </aside>

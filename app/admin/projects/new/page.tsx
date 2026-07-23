@@ -18,7 +18,7 @@ export default function AdminNewProjectPage() {
     if (!slug.trim()) return
     setSaving(true)
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       await setDoc(doc(db, "projects", slug), {
         title,
         slug,

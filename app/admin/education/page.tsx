@@ -27,7 +27,7 @@ export default function AdminEducationPage() {
   useEffect(() => {
     async function load() {
       try {
-        const { db } = getFirebaseClient()
+        const { db } = await getFirebaseClient()
         const snapshot = await getDocs(collection(db, "education"))
         if (!snapshot.empty) {
           const list = snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as EducationItem))
@@ -54,7 +54,7 @@ export default function AdminEducationPage() {
   const handleAdd = async () => {
     if (!newDegree.trim() || !newInstitution.trim()) return
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       const docRef = await addDoc(collection(db, "education"), {
         degree: newDegree,
         institution: newInstitution,
@@ -72,7 +72,7 @@ export default function AdminEducationPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      const { db } = getFirebaseClient()
+      const { db } = await getFirebaseClient()
       await deleteDoc(doc(db, "education", id))
       setItems((prev) => prev.filter((i) => i.id !== id))
     } catch {}

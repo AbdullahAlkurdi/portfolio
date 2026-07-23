@@ -22,20 +22,42 @@ const contactIcons: Record<string, React.ReactNode> = {
   Facebook: <Users size={18} />,
 };
 
+const contactLabels: Record<string, Record<string, string>> = {
+  en: {
+    Email: "Email",
+    WhatsApp: "WhatsApp",
+    Phone: "Phone",
+    GitHub: "GitHub",
+    LinkedIn: "LinkedIn",
+    Telegram: "Telegram",
+    Instagram: "Instagram",
+    Facebook: "Facebook",
+  },
+  ar: {
+    Email: "البريد الإلكتروني",
+    WhatsApp: "واتساب",
+    Phone: "الهاتف",
+    GitHub: "GitHub",
+    LinkedIn: "LinkedIn",
+    Telegram: "تيليغرام",
+    Instagram: "إنستغرام",
+    Facebook: "فيسبوك",
+  },
+};
+
+const primaryKeys = ["Email", "WhatsApp", "Phone", "GitHub", "LinkedIn"];
+
 export function ContactSection() {
-  const { locale } = useLocale();
+  const { locale, dir } = useLocale();
   const { resume } = useContent();
   const content = getSiteContent(locale).contact;
+  const labels = contactLabels[locale];
   const primaryContacts = useMemo(
-    () => resume.contact.filter((c) =>
-      ["Email", "WhatsApp", "Phone", "GitHub", "LinkedIn"].includes(c.label)
-    ),
+    () => resume.contact.filter((c) => primaryKeys.includes(c.label)),
     [resume.contact]
   );
   const otherContacts = useMemo(
-    () => resume.contact.filter((c) =>
-      !["Email", "WhatsApp", "Phone", "GitHub", "LinkedIn"].includes(c.label)
-    ),
+    () => resume.contact.filter((c) => !primaryKeys.includes(c.label)),
     [resume.contact]
   );
 
@@ -61,7 +83,7 @@ export function ContactSection() {
 
         <div className="grid gap-6 md:grid-cols-2">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: dir === "rtl" ? 20 : -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.5 }}
@@ -81,14 +103,14 @@ export function ContactSection() {
                   rel={contact.href.startsWith("http") ? "noopener noreferrer" : undefined}
                 >
                   {contactIcons[contact.label]}
-                  {contact.label}
+                  {labels[contact.label] ?? contact.label}
                 </Button>
               ))}
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: locale === "ar" ? -20 : 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.5 }}
@@ -108,7 +130,7 @@ export function ContactSection() {
                   rel="noopener noreferrer"
                 >
                   {contactIcons[contact.label]}
-                  {contact.label}
+                  {labels[contact.label] ?? contact.label}
                 </Button>
               ))}
             </div>
